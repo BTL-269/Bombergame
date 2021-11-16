@@ -1,7 +1,7 @@
 import entities.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.event.EventHandler;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -27,6 +27,9 @@ public class BombermanGame extends Application {
     private final List<Entity> entities = new ArrayList<>();
     private final List<Entity> stillObjects = new ArrayList<>();
 
+    private Bomber bomberman;
+
+    //private static char[][] board = new char[HEIGHT][WIDTH];
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
@@ -60,54 +63,43 @@ public class BombermanGame extends Application {
 
         createMap();
 
-        Entity bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+        bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
         entities.add(bomberman);
+        entities.add(bomberman.bomb);
+
+        if (stage.getScene() != null) {
+            Platform.runLater(() -> {
+                stage.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+                    bomberman.handle(event);
+                    /*if (event.getCode() == KeyCode.SPACE) {
+                        bomberman.bomb.setXY(6, 1);
+                    }
+                    System.out.println(bomberman.map[1][1] + " " + stillObjects.get(1).map[6][1]);*/
+                });
+            });
+        }
 
     }
 
     public void createMap() {
-        /*for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                Entity object;
-                if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1) {
-                    object = new Wall(i, j, Sprite.wall.getFxImage());
+        Entity entity = new Grass(1, 1, Sprite.grass.getFxImage());
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
+                Entity obj;
+                if (entity.map[i][j] == '#') {
+                    obj = new Wall(j, i, Sprite.wall.getFxImage());
+                } else {
+                    obj = new Grass(j, i, Sprite.grass.getFxImage());
                 }
-                else {
-                    object = new Grass(i, j, Sprite.grass.getFxImage());
+                stillObjects.add(obj);
+                if (entity.map[i][j] == '*') {
+                    entities.add(new Brick(j, i, Sprite.brick.getFxImage()));
+                } else if (entity.map[i][j] == 'x') {
+                    entities.add(new Portal(j, i, Sprite.portal.getFxImage()));
                 }
-                stillObjects.add(object);
+                System.out.print(entity.map[i][j]);
             }
-        }*/
-        try {
-            FileReader fr = new FileReader("res/levels/Level1.txt");
-            BufferedReader br = new BufferedReader(fr);
-            br.readLine();
-            /*String[] arr = s.split(String.valueOf(' '));
-            int row = Integer.parseInt(arr[1]);
-            int col = Integer.parseInt(arr[2]);*/
-            String s;
-            int j = 0;
-            while ((s = br.readLine()) != null && j < HEIGHT) {
-                System.out.println(s);
-                for (int i = 0; i < s.length(); i++) {
-                    Entity obj;
-                    if (s.charAt(i) == '#') {
-                        obj = new Wall(i, j, Sprite.wall.getFxImage());
-                    } else if (s.charAt(i) == '*') {
-                        obj = new Brick(i, j, Sprite.brick.getFxImage());
-                    } else if (s.charAt(i) == 'x') {
-                        obj = new Portal(i, j, Sprite.portal.getFxImage());
-                    } else {
-                        obj = new Grass(i, j, Sprite.grass.getFxImage());
-                    }
-                    stillObjects.add(obj);
-                }
-                j++;
-            }
-            br.close();
-            fr.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println();
         }
     }
 

@@ -22,7 +22,7 @@ public class Sprite {
 
 	/*
 	|--------------------------------------------------------------------------
-	| Board sprites
+	| graphics.Board sprites
 	|--------------------------------------------------------------------------
 	 */
 	public static Sprite grass = new Sprite(DEFAULT_SIZE, 6, 0, SpriteSheet.tiles, 16, 16);
