@@ -7,8 +7,13 @@ import javafx.scene.input.KeyEvent;
 
 public class Bomber extends Entity {
 
+    private boolean die, up, down;
+
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
+        up = false;
+        down = false;
+        die = false;
     }
 
     @Override
@@ -18,10 +23,12 @@ public class Bomber extends Entity {
 
     public void handle(KeyEvent event) {
         if (event.getCode() == KeyCode.UP) {
-            x += Sprite.SCALED_SIZE;
+            up = true;
+            y += Sprite.SCALED_SIZE;
         }
         if (event.getCode() == KeyCode.DOWN) {
-            x += Sprite.SCALED_SIZE;
+            down = true;
+            y += Sprite.SCALED_SIZE;
         }
         if (event.getCode() == KeyCode.LEFT) {
             x += Sprite.SCALED_SIZE;
@@ -29,5 +36,10 @@ public class Bomber extends Entity {
         if (event.getCode() == KeyCode.RIGHT) {
             x += Sprite.SCALED_SIZE;
         }
+    }
+
+    public boolean checkCollision() {
+
+        return true;
     }
 }

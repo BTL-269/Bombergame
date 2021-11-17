@@ -1,19 +1,16 @@
 import entities.*;
+import entities.emeny.Balloon;
+import entities.emeny.Doll;
+import graphics.Map;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import graphics.Sprite;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,48 +63,31 @@ public class BombermanGame extends Application {
     }
 
     public void createMap() {
-        /*for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                Entity object;
-                if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1) {
-                    object = new Wall(i, j, Sprite.wall.getFxImage());
+        Map map = new Map("res/levels/Level1.txt");
+        char[][] arr = map.getMap();
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                Entity obj = new Grass(j, i, Sprite.grass.getFxImage());
+                stillObjects.add(obj);
+                if (arr[i][j] == '#') {
+                    obj = new Wall(j, i, Sprite.wall.getFxImage());
                 }
-                else {
-                    object = new Grass(i, j, Sprite.grass.getFxImage());
+                if (arr[i][j] == '*') {
+                    obj = new Brick(j, i, Sprite.brick.getFxImage());
                 }
-                stillObjects.add(object);
+                if (arr[i][j] == 'x') {
+                    obj = new Portal(j, i, Sprite.portal.getFxImage());
+                }
+                if (arr[i][j] == '1') {
+                    obj = new Balloon(j, i, Sprite.balloom_left1.getFxImage());
+                    entities.add(obj);
+                }
+                if (arr[i][j] == '2') {
+                    obj = new Doll(j, i, Sprite.doll_left1.getFxImage());
+                    entities.add(obj);
+                }
+                if (!(obj instanceof Grass)) stillObjects.add(obj);
             }
-        }*/
-        try {
-            FileReader fr = new FileReader("res/levels/Level1.txt");
-            BufferedReader br = new BufferedReader(fr);
-            br.readLine();
-            /*String[] arr = s.split(String.valueOf(' '));
-            int row = Integer.parseInt(arr[1]);
-            int col = Integer.parseInt(arr[2]);*/
-            String s;
-            int j = 0;
-            while ((s = br.readLine()) != null && j < HEIGHT) {
-                System.out.println(s);
-                for (int i = 0; i < s.length(); i++) {
-                    Entity obj;
-                    if (s.charAt(i) == '#') {
-                        obj = new Wall(i, j, Sprite.wall.getFxImage());
-                    } else if (s.charAt(i) == '*') {
-                        obj = new Brick(i, j, Sprite.brick.getFxImage());
-                    } else if (s.charAt(i) == 'x') {
-                        obj = new Portal(i, j, Sprite.portal.getFxImage());
-                    } else {
-                        obj = new Grass(i, j, Sprite.grass.getFxImage());
-                    }
-                    stillObjects.add(obj);
-                }
-                j++;
-            }
-            br.close();
-            fr.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
