@@ -1,0 +1,16 @@
+.background {
+    -fx-background-image: url("images/menu.png");
+}
+.selected:hover {
+    -fx-background-color: #3b3b41;
+}
+.button-menu {
+    -fx-background-color: #083167;
+    -fx-background-radius: 30;
+}
+.transparent {
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+.backgr {
+    -fx-background-image: url("images/settings.png");
+}
