@@ -1,4 +1,4 @@
-package graphics;
+package Controller.graphics;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -11,20 +11,20 @@ import java.net.URL;
  */
 public class SpriteSheet {
 
-	private String _path;
 	public final int SIZE;
+	private String _path;
 	public int[] _pixels;
 	public BufferedImage image;
 
-	public static SpriteSheet tiles = new SpriteSheet("/textures/classic.png", 256);
-	
+	public static SpriteSheet tiles = new SpriteSheet("/textures/background.png", 512);
+
 	public SpriteSheet(String path, int size) {
 		_path = path;
 		SIZE = size;
 		_pixels = new int[SIZE * SIZE];
 		load();
 	}
-	
+
 	private void load() {
 		try {
 			URL a = SpriteSheet.class.getResource(_path);
