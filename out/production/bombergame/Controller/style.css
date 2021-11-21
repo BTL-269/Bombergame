@@ -14,3 +14,10 @@
 .backgr {
     -fx-background-image: url("images/settings.png");
 }
+.instruction {
+    -fx-background-image: url("images/instructions.png");
+}
+.border {
+   -fx-border-width: 5;
+    -fx-border-color: #052146;
+}

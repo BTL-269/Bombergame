@@ -1,7 +1,7 @@
 package Controller.graphics;
 
 
-import Controller.BombermanGame;
+import Controller.MainGame;
 import Controller.SettingGame;
 import Controller.entities.*;
 
@@ -25,44 +25,39 @@ public class Board {
 
             URL absPath = Board.class.getResource("/" + path);
             BufferedReader in = new BufferedReader(new InputStreamReader(absPath.openStream()));
-            for (int i = 0; i < SettingGame.HEIGHT; i++) {
+            for (int i = 0; i < MainGame.HEIGHT; i++) {
                 String s = in.readLine();
                 s.trim();
                 for (int j = 0; j < s.length(); j++) {
                     Entity object = null;
-                    Entity grass = null;
-                    if (!(i == 0 || j == 0 || i == 14 || j == 19)) {
-                        if (SettingGame.level == 1) {
-                            grass = new Grass(j, i, Sprite.grass1.getFxImage());
-                        } else if (SettingGame.level == 2) {
-                            grass = new Grass(j, i, Sprite.grass2.getFxImage());
-                        } else if (SettingGame.level == 3) {
-                            grass = new Grass(j, i, Sprite.grass3.getFxImage());
-                        } else {
-                            grass = new Grass(j, i, Sprite.grass4.getFxImage());
-                        }
+                    if (SettingGame.map == 1) {
+                        object = new Grass(j, i, Sprite.grass1.getFxImage());
+                    } else if (SettingGame.map == 2) {
+                        object = new Grass(j, i, Sprite.grass2.getFxImage());
+                    } else if (SettingGame.map == 3) {
+                        object = new Grass(j, i, Sprite.grass3.getFxImage());
+                    } else {
+                        object = new Grass(j, i, Sprite.grass4.getFxImage());
                     }
-                    if (grass != null) {
-                        stillObjects.add(grass);
-                    }
+                    stillObjects.add(object);
                     switch (s.charAt(j)) {
                         case '#':
-                            if (SettingGame.level == 1) {
+                            if (SettingGame.map == 1) {
                                 object = new Wall(j, i, Sprite.wall1.getFxImage());
-                            } else if (SettingGame.level == 2) {
+                            } else if (SettingGame.map == 2) {
                                 object = new Wall(j, i, Sprite.wall2.getFxImage());
-                            } else if (SettingGame.level == 3) {
+                            } else if (SettingGame.map == 3) {
                                 object = new Wall(j, i, Sprite.wall3.getFxImage());
                             } else {
                                 object = new Wall(j, i, Sprite.wall4.getFxImage());
                             }
                             break;
                         case '*':
-                            if (SettingGame.level == 1) {
+                            if (SettingGame.map == 1) {
                                 object = new Brick(j, i, Sprite.brick1.getFxImage());
-                            } else if (SettingGame.level == 2) {
+                            } else if (SettingGame.map == 2) {
                                 object = new Brick(j, i, Sprite.brick2.getFxImage());
-                            } else if (SettingGame.level == 3) {
+                            } else if (SettingGame.map == 3) {
                                 object = new Brick(j, i, Sprite.brick3.getFxImage());
                             } else {
                                 object = new Brick(j, i, Sprite.brick4.getFxImage());
@@ -71,11 +66,11 @@ public class Board {
                         case 'x':
                             object = new Portal(j, i, Sprite.portal.getFxImage());
                             stillObjects.add(object);
-                            if (SettingGame.level == 1) {
+                            if (SettingGame.map == 1) {
                                 object = new Brick(j, i, Sprite.brick1.getFxImage());
-                            } else if (SettingGame.level == 2) {
+                            } else if (SettingGame.map == 2) {
                                 object = new Brick(j, i, Sprite.brick2.getFxImage());
-                            } else if (SettingGame.level == 3) {
+                            } else if (SettingGame.map == 3) {
                                 object = new Brick(j, i, Sprite.brick3.getFxImage());
                             } else {
                                 object = new Brick(j, i, Sprite.brick4.getFxImage());

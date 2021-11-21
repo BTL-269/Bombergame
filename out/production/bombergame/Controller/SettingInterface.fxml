@@ -6,99 +6,54 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="paneNext" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="840.0" styleClass="backgr" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SettingGame">
+<Pane fx:id="paneNext" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1000.0" styleClass="backgr" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SettingGame">
    <children>
-      <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="101.0" layoutY="106.0" onMouseClicked="#clickLevel1" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/level1.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="273.0" layoutY="106.0" onMouseClicked="#clickLevel2" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/level2.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="440.0" layoutY="106.0" onMouseClicked="#clickLevel3" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/level3.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="611.0" layoutY="106.0" onMouseClicked="#clickLevel4" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/level4.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="258.0" layoutY="266.0" onMouseClicked="#clickPlayer2" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/player2.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="383.0" layoutY="266.0" onMouseClicked="#clickPlayer3" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/player3.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="509.0" layoutY="266.0" onMouseClicked="#clickPlayer4" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/player4.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="124.0" layoutY="266.0" onMouseClicked="#clickPlayer1" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/player1.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="634.0" layoutY="266.0" onMouseClicked="#clickPlayer5" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/player5.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="137.0" layoutY="230.0" text="Level1">
+      <Label layoutX="181.0" layoutY="320.0" text="Map1">
          <font>
             <Font name="Cambria Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="307.0" layoutY="230.0" text="Level2">
+      <Label layoutX="378.0" layoutY="320.0" text="Map2">
          <font>
             <Font name="Cambria Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="474.0" layoutY="230.0" text="Level3">
+      <Label layoutX="574.0" layoutY="320.0" text="Map3">
          <font>
             <Font name="Cambria Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="645.0" layoutY="230.0" text="Level4">
+      <Label layoutX="766.0" layoutY="320.0" text="Map4">
          <font>
             <Font name="Cambria Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="132.0" layoutY="368.0" text="Player1">
+      <Label layoutX="169.0" layoutY="521.0" text="Oran">
          <font>
             <Font name="Cambria Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="272.0" layoutY="368.0" text="Player2">
+      <Label layoutX="324.0" layoutY="521.0" text="Maria">
          <font>
             <Font name="Cambria Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="390.0" layoutY="368.0" text="Player3">
+      <Label layoutX="478.0" layoutY="521.0" text="Tomy">
          <font>
             <Font name="Cambria Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="516.0" layoutY="368.0" text="Player4">
+      <Label layoutX="638.0" layoutY="521.0" text="Nick">
          <font>
             <Font name="Cambria Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="645.0" layoutY="368.0" text="Player5">
+      <Label layoutX="776.0" layoutY="521.0" text="Winny">
          <font>
             <Font name="Cambria Bold" size="17.0" />
          </font>
       </Label>
-      <Button layoutX="537.0" layoutY="417.0" mnemonicParsing="false" onAction="#clickPlay" prefHeight="44.0" prefWidth="149.0" stylesheets="@style.css" text="Play" textFill="WHITE">
+      <Button layoutX="641.0" layoutY="600.0" mnemonicParsing="false" onAction="#clickPlay" prefHeight="55.0" prefWidth="165.0" stylesheets="@style.css" text="Play" textFill="WHITE">
          <font>
             <Font name="Cambria Bold" size="22.0" />
          </font>
@@ -107,7 +62,7 @@
             <String fx:value="selected" />
          </styleClass>
       </Button>
-      <Button layoutX="173.0" layoutY="417.0" mnemonicParsing="false" onAction="#clickBack" prefHeight="44.0" prefWidth="149.0" stylesheets="@style.css" text="Back" textFill="WHITE">
+      <Button layoutX="195.0" layoutY="600.0" mnemonicParsing="false" onAction="#clickBack" prefHeight="55.0" prefWidth="165.0" stylesheets="@style.css" text="Back" textFill="WHITE">
          <font>
             <Font name="Cambria Bold" size="22.0" />
          </font>
@@ -116,5 +71,86 @@
             <String fx:value="selected" />
          </styleClass>
       </Button>
+      <Pane layoutX="149.0" layoutY="401.0" prefHeight="100.0" prefWidth="85.0" style="-fx-background-radius: 10;" styleClass="selected">
+         <children>
+            <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#clickOran" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/player1.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="307.0" layoutY="401.0" prefHeight="100.0" prefWidth="85.0" style="-fx-background-radius: 10;" styleClass="selected">
+         <children>
+            <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#clickMaria" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/player2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="460.0" layoutY="401.0" prefHeight="100.0" prefWidth="85.0" style="-fx-background-radius: 10;" styleClass="selected">
+         <children>
+            <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#clickTomy" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/player3.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="615.0" layoutY="401.0" prefHeight="100.0" prefWidth="85.0" style="-fx-background-radius: 10;" styleClass="selected">
+         <children>
+            <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#clickNick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/player4.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="762.0" layoutY="401.0" prefHeight="100.0" prefWidth="85.0" style="-fx-background-radius: 10;" styleClass="selected">
+         <children>
+            <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#clickWinny" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/player5.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="138.0" layoutY="176.0" prefHeight="130.0" prefWidth="130.0" style="-fx-background-radius: 10;" styleClass="selected" stylesheets="@style.css">
+         <children>
+            <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#clickMap1" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/level1.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="335.0" layoutY="176.0" prefHeight="130.0" prefWidth="130.0" style="-fx-background-radius: 10;" styleClass="selected" stylesheets="@style.css">
+         <children>
+            <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#clickMap2" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/level2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="531.0" layoutY="177.0" prefHeight="130.0" prefWidth="130.0" style="-fx-background-radius: 10;" styleClass="selected" stylesheets="@style.css">
+         <children>
+            <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#clickMap3" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/level3.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="723.0" layoutY="176.0" prefHeight="130.0" prefWidth="130.0" style="-fx-background-radius: 10;" styleClass="selected" stylesheets="@style.css">
+         <children>
+            <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#clickMap4" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/level4.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </Pane>

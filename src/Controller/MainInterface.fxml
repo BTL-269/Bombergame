@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainPane" prefHeight="680.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainGame">
+   <children>
+      <Pane layoutX="4.0" prefHeight="100.0" prefWidth="800.0" style="-fx-background-color: #7cbcf5;" styleClass="border" stylesheets="@style.css" AnchorPane.leftAnchor="0.0">
+         <children>
+            <Pane layoutX="87.0" layoutY="10.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 15;" styleClass="selected" stylesheets="@style.css">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#clickBack" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/back.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="357.0" layoutY="10.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 15;" styleClass="selected" stylesheets="@style.css">
+               <children>
+                  <ImageView fx:id="imgPause" fitHeight="60.0" fitWidth="60.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#clickPause" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/continue.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="604.0" layoutY="10.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 15;" styleClass="selected" stylesheets="@style.css">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#clickRadio" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/speaker.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="800.0" layoutY="100.0" prefHeight="680.0" prefWidth="200.0" style="-fx-background-color: #7cbcf5;" styleClass="border" stylesheets="@style.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="15.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/highScore.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="highScore" layoutX="60.0" layoutY="17.0" prefHeight="38.0" prefWidth="150.0" styleClass="transparent" stylesheets="@style.css">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </TextField>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="15.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/heart.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="13.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/timer.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/score.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="heart" layoutX="54.0" layoutY="216.0" prefHeight="38.0" prefWidth="150.0" styleClass="transparent" stylesheets="@style.css">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="time" layoutX="54.0" layoutY="84.0" prefHeight="38.0" prefWidth="150.0" styleClass="transparent" stylesheets="@style.css">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="score" layoutX="54.0" layoutY="146.0" prefHeight="38.0" prefWidth="150.0" styleClass="transparent" stylesheets="@style.css">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="iBombs" layoutX="33.0" layoutY="327.0" prefHeight="38.0" prefWidth="60.0" styleClass="transparent" stylesheets="@style.css">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="iHeart" layoutX="129.0" layoutY="327.0" prefHeight="38.0" prefWidth="60.0" styleClass="transparent" stylesheets="@style.css">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="iSpeed" layoutX="33.0" layoutY="427.0" prefHeight="38.0" prefWidth="60.0" styleClass="transparent" stylesheets="@style.css">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="iWallpass" layoutX="129.0" layoutY="427.0" prefHeight="38.0" prefWidth="60.0" styleClass="transparent" stylesheets="@style.css">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </TextField>
+            <Pane layoutX="45.0" layoutY="484.0" prefHeight="110.0" prefWidth="110.0" style="-fx-background-radius: 30;" styleClass="selected" stylesheets="@style.css">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#clickBomb" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/bomb.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <BorderPane layoutX="34.0" layoutY="376.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 10;" styleClass="selected" stylesheets="@style.css">
+               <center>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" onMouseClicked="#clickSpeedItem" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@images/powerup_speed.png" />
+                     </image>
+                  </ImageView>
+               </center>
+            </BorderPane>
+            <BorderPane layoutX="129.0" layoutY="376.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 10;" styleClass="selected" stylesheets="@style.css">
+               <center>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" onMouseClicked="#clickWallpassItem" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@images/powerup_wallpass.png" />
+                     </image>
+                  </ImageView>
+               </center>
+            </BorderPane>
+            <BorderPane layoutX="33.0" layoutY="281.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 10;" styleClass="selected" stylesheets="@style.css">
+               <center>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" onMouseClicked="#clickBombItem" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@images/powerup_bombs.png" />
+                     </image>
+                  </ImageView>
+               </center>
+            </BorderPane>
+            <BorderPane layoutX="129.0" layoutY="281.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 10;" styleClass="selected" stylesheets="@style.css">
+               <center>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" onMouseClicked="#clickHeartItem" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@images/powerup_detonator.png" />
+                     </image>
+                  </ImageView>
+               </center>
+            </BorderPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
