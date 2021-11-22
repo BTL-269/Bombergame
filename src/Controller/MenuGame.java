@@ -14,7 +14,7 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MenuGame implements Initializable {
+public class MenuGame {
 
     @FXML
     private Pane pane;
@@ -36,11 +36,6 @@ public class MenuGame implements Initializable {
     }
 
     @FXML
-    public void showScore(ActionEvent event) {
-        listScore.setVisible(true);
-    }
-
-    @FXML
     public void clickInstruction(ActionEvent event) {
         try {
             URL url = MenuGame.class.getResource("InstructionInterface.fxml");
@@ -56,11 +51,5 @@ public class MenuGame implements Initializable {
     @FXML
     void clickSpeaker(MouseEvent event) {
 
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        listScore.setVisible(false);
-        listScore.setItems(list);
     }
 }

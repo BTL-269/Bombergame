@@ -4,15 +4,18 @@ import Controller.entities.Entity;
 import Controller.graphics.Board;
 import Controller.graphics.Sprite;
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -21,6 +24,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static Controller.SettingGame.bomberman;
 
 public class MainGame implements Initializable {
     public static final int WIDTH = 25;
@@ -37,10 +42,13 @@ public class MainGame implements Initializable {
     }
 
     public void render() {
-        gc.clearRect(0, 100, canvas.getWidth(), canvas.getHeight());
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         board.getStillObjects().forEach(g -> g.render(gc));
         entities.forEach(g -> g.render(gc));
     }
+
+    @FXML
+    private Label levelLabel;
 
     @FXML
     private TextField score;
@@ -108,26 +116,6 @@ public class MainGame implements Initializable {
 
     }
 
-    @FXML
-    void clickSpeedItem(MouseEvent event) {
-
-    }
-
-    @FXML
-    void clickWallpassItem(MouseEvent event) {
-
-    }
-
-    @FXML
-    void clickBombItem(MouseEvent event) {
-
-    }
-
-    @FXML
-    void clickHeartItem(MouseEvent event) {
-
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Create Canvas
@@ -152,7 +140,19 @@ public class MainGame implements Initializable {
         };
         timer.start();
         board.createMap("levels/Level" + Integer.toString(level) + ".txt");
-        entities.add(SettingGame.bomberman);
+        entities.add(bomberman);
+        entities.add(bomberman.bomb);
+        for (int i = 0; i < 5; i++) {
+            entities.add(bomberman.bomb.explosions.get(i));
+        }
+        entities.add(bomberman);
+        if (mainPane != null) {
+            Platform.runLater(() -> {
+                mainPane.addEventFilter(KeyEvent.KEY_PRESSED, event1 -> {
+                    bomberman.handle(event1);
+                });
+            });
+        }
     }
 }
 

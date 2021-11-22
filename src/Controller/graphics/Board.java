@@ -15,10 +15,10 @@ import java.util.List;
 public class Board {
 
     private List<Entity> stillObjects = new ArrayList<Entity>();
-
     public List<Entity> getStillObjects() {
         return stillObjects;
     }
+    public static char[][] map = new char[MainGame.HEIGHT][MainGame.WIDTH];
 
     public void createMap(String path) {
         try {
@@ -29,12 +29,13 @@ public class Board {
                 String s = in.readLine();
                 s.trim();
                 for (int j = 0; j < s.length(); j++) {
+                    map[i][j] = s.charAt(j);
                     Entity object = null;
-                    if (SettingGame.map == 1) {
+                    if (SettingGame.typeMap == 1) {
                         object = new Grass(j, i, Sprite.grass1.getFxImage());
-                    } else if (SettingGame.map == 2) {
+                    } else if (SettingGame.typeMap == 2) {
                         object = new Grass(j, i, Sprite.grass2.getFxImage());
-                    } else if (SettingGame.map == 3) {
+                    } else if (SettingGame.typeMap == 3) {
                         object = new Grass(j, i, Sprite.grass3.getFxImage());
                     } else {
                         object = new Grass(j, i, Sprite.grass4.getFxImage());
@@ -42,22 +43,22 @@ public class Board {
                     stillObjects.add(object);
                     switch (s.charAt(j)) {
                         case '#':
-                            if (SettingGame.map == 1) {
+                            if (SettingGame.typeMap == 1) {
                                 object = new Wall(j, i, Sprite.wall1.getFxImage());
-                            } else if (SettingGame.map == 2) {
+                            } else if (SettingGame.typeMap == 2) {
                                 object = new Wall(j, i, Sprite.wall2.getFxImage());
-                            } else if (SettingGame.map == 3) {
+                            } else if (SettingGame.typeMap == 3) {
                                 object = new Wall(j, i, Sprite.wall3.getFxImage());
                             } else {
                                 object = new Wall(j, i, Sprite.wall4.getFxImage());
                             }
                             break;
                         case '*':
-                            if (SettingGame.map == 1) {
+                            if (SettingGame.typeMap == 1) {
                                 object = new Brick(j, i, Sprite.brick1.getFxImage());
-                            } else if (SettingGame.map == 2) {
+                            } else if (SettingGame.typeMap == 2) {
                                 object = new Brick(j, i, Sprite.brick2.getFxImage());
-                            } else if (SettingGame.map == 3) {
+                            } else if (SettingGame.typeMap == 3) {
                                 object = new Brick(j, i, Sprite.brick3.getFxImage());
                             } else {
                                 object = new Brick(j, i, Sprite.brick4.getFxImage());
@@ -66,11 +67,11 @@ public class Board {
                         case 'x':
                             object = new Portal(j, i, Sprite.portal.getFxImage());
                             stillObjects.add(object);
-                            if (SettingGame.map == 1) {
+                            if (SettingGame.typeMap == 1) {
                                 object = new Brick(j, i, Sprite.brick1.getFxImage());
-                            } else if (SettingGame.map == 2) {
+                            } else if (SettingGame.typeMap == 2) {
                                 object = new Brick(j, i, Sprite.brick2.getFxImage());
-                            } else if (SettingGame.map == 3) {
+                            } else if (SettingGame.typeMap == 3) {
                                 object = new Brick(j, i, Sprite.brick3.getFxImage());
                             } else {
                                 object = new Brick(j, i, Sprite.brick4.getFxImage());
@@ -92,7 +93,7 @@ public class Board {
                             object = new Enemies(j, i, Sprite.kondoria_left1.getFxImage());
                             break;
                         case 'b':
-                            object = new Items(j, i, Sprite.bomb.getFxImage());
+                            object = new Items(j, i, Sprite.powerup_bombs.getFxImage());
                             stillObjects.add(object);
                             object = new Items(j, i, Sprite.gift.getFxImage());
                             break;
@@ -101,18 +102,13 @@ public class Board {
                             stillObjects.add(object);
                             object = new Items(j, i, Sprite.gift.getFxImage());
                             break;
-                        case 'f':
-                            object = new Items(j, i, Sprite.powerup_flames.getFxImage());
-                            stillObjects.add(object);
-                            object = new Items(j, i, Sprite.gift.getFxImage());
-                            break;
                         case 's':
                             object = new Items(j, i, Sprite.powerup_speed.getFxImage());
                             stillObjects.add(object);
                             object = new Items(j, i, Sprite.gift.getFxImage());
                             break;
-                        case 'w':
-                            object = new Items(j, i, Sprite.powerup_wallpass.getFxImage());
+                        case 'f':
+                            object = new Items(j, i, Sprite.powerup_flames.getFxImage());
                             stillObjects.add(object);
                             object = new Items(j, i, Sprite.gift.getFxImage());
                             break;

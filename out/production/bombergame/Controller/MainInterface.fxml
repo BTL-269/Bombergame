@@ -83,42 +83,22 @@
                   <Font name="Cambria Bold" size="20.0" />
                </font>
             </TextField>
-            <TextField fx:id="iBombs" layoutX="14.0" layoutY="321.0" prefHeight="38.0" prefWidth="60.0" styleClass="transparent" stylesheets="@style.css">
+            <TextField fx:id="iBombs" layoutX="33.0" layoutY="327.0" prefHeight="38.0" prefWidth="60.0" styleClass="transparent" stylesheets="@style.css">
                <font>
                   <Font name="Cambria Bold" size="20.0" />
                </font>
             </TextField>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="28.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/powerup_bombs.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="124.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/powerup_detonator.png" />
-               </image>
-            </ImageView>
-            <TextField fx:id="iHeart" layoutX="110.0" layoutY="321.0" prefHeight="38.0" prefWidth="60.0" styleClass="transparent" stylesheets="@style.css">
+            <TextField fx:id="iHeart" layoutX="129.0" layoutY="327.0" prefHeight="38.0" prefWidth="60.0" styleClass="transparent" stylesheets="@style.css">
                <font>
                   <Font name="Cambria Bold" size="20.0" />
                </font>
             </TextField>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="28.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/powerup_speed.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="124.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/powerup_wallpass.png" />
-               </image>
-            </ImageView>
-            <TextField fx:id="iSpeed" layoutX="14.0" layoutY="417.0" prefHeight="38.0" prefWidth="60.0" styleClass="transparent" stylesheets="@style.css">
+            <TextField fx:id="iSpeed" layoutX="33.0" layoutY="427.0" prefHeight="38.0" prefWidth="60.0" styleClass="transparent" stylesheets="@style.css">
                <font>
                   <Font name="Cambria Bold" size="20.0" />
                </font>
             </TextField>
-            <TextField fx:id="iWallpass" layoutX="110.0" layoutY="417.0" prefHeight="38.0" prefWidth="60.0" styleClass="transparent" stylesheets="@style.css">
+            <TextField fx:id="iWallpass" layoutX="129.0" layoutY="427.0" prefHeight="38.0" prefWidth="60.0" styleClass="transparent" stylesheets="@style.css">
                <font>
                   <Font name="Cambria Bold" size="20.0" />
                </font>
@@ -132,6 +112,42 @@
                   </ImageView>
                </children>
             </Pane>
+            <BorderPane layoutX="34.0" layoutY="376.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 10;" styleClass="selected" stylesheets="@style.css">
+               <center>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" onMouseClicked="#clickSpeedItem" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@images/powerup_speed.png" />
+                     </image>
+                  </ImageView>
+               </center>
+            </BorderPane>
+            <BorderPane layoutX="129.0" layoutY="376.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 10;" styleClass="selected" stylesheets="@style.css">
+               <center>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" onMouseClicked="#clickWallpassItem" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@images/powerup_wallpass.png" />
+                     </image>
+                  </ImageView>
+               </center>
+            </BorderPane>
+            <BorderPane layoutX="33.0" layoutY="281.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 10;" styleClass="selected" stylesheets="@style.css">
+               <center>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" onMouseClicked="#clickBombItem" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@images/powerup_bombs.png" />
+                     </image>
+                  </ImageView>
+               </center>
+            </BorderPane>
+            <BorderPane layoutX="129.0" layoutY="281.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 10;" styleClass="selected" stylesheets="@style.css">
+               <center>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" onMouseClicked="#clickHeartItem" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@images/powerup_detonator.png" />
+                     </image>
+                  </ImageView>
+               </center>
+            </BorderPane>
          </children>
       </Pane>
    </children>

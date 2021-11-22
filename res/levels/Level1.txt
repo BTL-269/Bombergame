@@ -1,13 +1,13 @@
 #########################
-#  *  # ** *  1 *  **2  #
+#p *  # ** *  1 *  **2  #
 # # #2#*# # #*#*# #  ** #
 #  **     ***  *d ** #  #
 # # # #1# #*# # #*#  ** #
-#  f **    1 *  ** 2**  #
+#  b **    1 *  ** 2**  #
 # # # # # ** # # # # # *#
 #*  1* x **  ** 2 * ##  #
 # # # # #*# # # #* # *  #
-#*  # f **  *   1 **  * #
+#*  #  **  *   1 ** f * #
 # #*# # # # # # #*# # # #
 #   2   *s  #  **   *1  #
 # # # # # *# 1 # #** #  #
@@ -17,9 +17,10 @@
 #  1 * ## **    #* # #  #
 #########################
 
+1 18 25
 
 Mô tả cấu trúc tệp cấu hình màn chơi:
-1/ Dòng đầu tiên bao gồm 3 số nguyên L, R, C:
+1/ Dòng đầu tiên sau ma trận kí tự bao gồm 3 số nguyên L, R, C:
 L - số thứ tự màn chơi
 R - số hàng của bản đồ
 C - số cột của bản đồ
@@ -34,10 +35,13 @@ Character:
 p - Bomber
 1 - Balloon
 2 - Oneal
-
+3 - Minvo
+4 - Doll
+5 - Kondoria
 Items:
 b - Bomb Item
 f - Flame Item
 s - Speed Item
+d - Heart Item
 
 Kí tự khác các kí tự trên - Grass

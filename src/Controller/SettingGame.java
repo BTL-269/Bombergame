@@ -1,7 +1,6 @@
 package Controller;
 
 import Controller.entities.Bomber;
-import Controller.entities.Entity;
 import Controller.graphics.Sprite;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,54 +12,60 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 
 public class SettingGame {
-    public static int map = 1;
-    public static Entity bomberman = new Bomber(1, 1, Sprite.child_right.getFxImage());
+    public static int typeMap = 1;
+    public static int player = 1;
+    public static Bomber bomberman = new Bomber(1, 1, Sprite.child_right.getFxImage());
 
     @FXML
     private Pane paneNext;
 
     @FXML
     void clickMap1(MouseEvent event) {
-        map = 1;
+        typeMap = 1;
     }
 
     @FXML
     void clickMap2(MouseEvent event) {
-        map = 2;
+        typeMap = 2;
     }
 
     @FXML
     void clickMap3(MouseEvent event) {
-        map = 3;
+        typeMap = 3;
     }
 
     @FXML
     void clickMap4(MouseEvent event) {
-        map = 4;
+        typeMap = 4;
     }
 
     @FXML
     void clickOran(MouseEvent event) {
+        player = 1;
         bomberman = new Bomber(1, 1, Sprite.child_right.getFxImage());
     }
 
     @FXML
     void clickMaria(MouseEvent event) {
+        player = 2;
         bomberman = new Bomber(1, 1, Sprite.girl_right.getFxImage());
     }
 
     @FXML
     void clickTomy(MouseEvent event) {
+        player = 3;
         bomberman = new Bomber(1, 1, Sprite.boy_right.getFxImage());
     }
 
     @FXML
     void clickNick(MouseEvent event) {
+        player = 4;
         bomberman = new Bomber(1, 1, Sprite.gamer_right.getFxImage());
     }
 
     @FXML
     void clickWinny(MouseEvent event) {
+        player = 5;
         bomberman = new Bomber(1, 1, Sprite.play_right.getFxImage());
     }
 

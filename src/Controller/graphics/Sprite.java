@@ -1,5 +1,7 @@
 package Controller.graphics;
 
+import Controller.MainGame;
+import Controller.SettingGame;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
@@ -247,6 +249,33 @@ public class Sprite {
 	public static Sprite powerup_flamepass = new Sprite(DEFAULT_SIZE, 5, 12, SpriteSheet.tiles, 32, 32);
 	public static Sprite powerup_speed = new Sprite(DEFAULT_SIZE, 6, 12, SpriteSheet.tiles, 32, 32);
 
+	/*
+	|--------------------------------------------------------------------------
+	| Player
+	|--------------------------------------------------------------------------
+	 */
+	public static Sprite player_up;
+	public static Sprite player_up_1;
+	public static Sprite player_up_2;
+	public static Sprite player_right;
+	public static Sprite player_right_1;
+	public static Sprite player_right_2;
+	public static Sprite player_down;
+	public static Sprite player_down_1;
+	public static Sprite player_down_2;
+	public static Sprite player_left;
+	public static Sprite player_left_1;
+	public static Sprite player_left_2;
+
+	/*
+	|--------------------------------------------------------------------------
+	| Map
+	|--------------------------------------------------------------------------
+	 */
+	public static Sprite grass;
+	public static Sprite brick;
+	public static Sprite wall;
+
 	public Sprite(int size, int x, int y, SpriteSheet sheet, int rw, int rh) {
 		SIZE = size;
 		_pixels = new int[SIZE * SIZE];
@@ -322,4 +351,124 @@ public class Sprite {
 		Image input = new ImageView(wr).getImage();
 		return input;
 	}
+
+	public static void setPlayer() {
+		switch (SettingGame.player) {
+			case 1:
+			{
+				player_up = child_back;
+				player_up_1 = child_back1;
+				player_up_2 = child_back2;
+				player_right = child_right;
+				player_right_1 = child_right1;
+				player_right_2 = child_right2;
+				player_down = child;
+				player_down_1 = child1;
+				player_down_2 = child2;
+				player_left = child_left;
+				player_left_1 = child_left1;
+				player_left_2 = child_left2;
+			}
+			break;
+			case 2:
+			{
+				player_up = girl_back;
+				player_up_1 = girl_back1;
+				player_up_2 = girl_back2;
+				player_right = girl_right;
+				player_right_1 = girl_right1;
+				player_right_2 = girl_right2;
+				player_down = girl;
+				player_down_1 = girl1;
+				player_down_2 = girl2;
+				player_left = girl_left;
+				player_left_1 = girl_left1;
+				player_left_2 = girl_left2;
+			}
+			break;
+			case 3:
+			{
+				player_up = boy_back;
+				player_up_1 = boy_back1;
+				player_up_2 = boy_back2;
+				player_right = boy_right;
+				player_right_1 = boy_right1;
+				player_right_2 = boy_right2;
+				player_down = boy;
+				player_down_1 = boy1;
+				player_down_2 = boy2;
+				player_left = boy_left;
+				player_left_1 = boy_left1;
+				player_left_2 = boy_left2;
+			}
+			break;
+			case 4:
+			{
+				player_up = gamer_back;
+				player_up_1 = gamer_back1;
+				player_up_2 = gamer_back2;
+				player_right = gamer_right;
+				player_right_1 = gamer_right1;
+				player_right_2 = gamer_right2;
+				player_down = gamer;
+				player_down_1 = gamer1;
+				player_down_2 = gamer2;
+				player_left = gamer_left;
+				player_left_1 = gamer_left1;
+				player_left_2 = gamer_left2;
+			}
+			break;
+			case 5:
+			{
+				player_up = play_back;
+				player_up_1 = play_back1;
+				player_up_2 = play_back2;
+				player_right = play_right;
+				player_right_1 = play_right1;
+				player_right_2 = play_right2;
+				player_down = play;
+				player_down_1 = play1;
+				player_down_2 = play2;
+				player_left = play_left;
+				player_left_1 = play_left1;
+				player_left_2 = play_left2;
+			}
+			break;
+		}
+	}
+
+	public static void setMap() {
+		switch (SettingGame.typeMap) {
+			case 1:
+			{
+				grass = grass1;
+				brick = brick1;
+				wall = wall1;
+			}
+			break;
+			case 2:
+			{
+				grass = grass2;
+				brick = brick2;
+				wall = wall2;
+			}
+			break;
+			case 3:
+			{
+				grass = grass3;
+				brick = brick3;
+				wall = wall3;
+			}
+			break;
+			case 4:
+			{
+				grass = grass4;
+				brick = brick4;
+				wall = wall4;
+			}
+			break;
+		}
+	}
+
+
 }
