@@ -2,7 +2,6 @@ package Controller;
 
 import entities.Bomber;
 import entities.Entity;
-import entities.Bomb;
 import graphics.Board;
 import graphics.Sprite;
 import javafx.animation.AnimationTimer;
@@ -29,10 +28,11 @@ public class SettingGame {
     public static int level = 1;
 
     public static int player = 1;
+    public static int numberEnemies = 0;
 
     private GraphicsContext gc;
     private Canvas canvas;
-    private List<Entity> entities = new ArrayList<Entity>();
+    public static List<Entity> entities = new ArrayList<Entity>();
     private Board board = new Board();
     private Bomber bomberman = new Bomber(1, 1, Sprite.child_right.getFxImage());
 
@@ -123,12 +123,13 @@ public class SettingGame {
         timer.start();
         board.createMap("levels/Level" + Integer.toString(level) + ".txt");
         entities.add(bomberman);
-        entities.add(bomberman.bomb);
-        for (int i = 0; i < 5; i++) {
-            entities.add(bomberman.bomb.explosions.get(i));
+        entities.add(bomberman.bomb1);
+        entities.add(bomberman.bomb2);
+        for (int i = 0; i < 9; i++) {
+            entities.add(bomberman.bomb1.explosions.get(i));
+            entities.add(bomberman.bomb2.explosions.get(i));
         }
         entities.add(bomberman);
-
         if (BombermanGame.stages.getScene() != null) {
             Platform.runLater(() -> {
                 BombermanGame.stages.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event1 -> {

@@ -20,9 +20,11 @@ public abstract class Entity extends Board {
     public static final int RIGHT = 1;
     public static final int DOWN = 2;
     public static final int LEFT = 3;
-    public static final int CENTER = 4;
+    public static final int CENTER = -1;
 
     protected Image img;
+
+    protected Sprite sprite;
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity(int xUnit, int yUnit, Image img) {
