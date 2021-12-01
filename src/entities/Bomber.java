@@ -1,5 +1,6 @@
 package entities;
 
+import Controller.SettingGame;
 import graphics.Sprite;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -17,6 +18,9 @@ public class Bomber extends Entity {
     public boolean alive = true;
     private long timeDie;
 
+    public static boolean win = false; // kiểm tra đã thắng chưa, nếu thắng tăng level.
+    public static boolean lose = false; // kiểm tra player đã thua chưa.
+
     public Bomber(int x, int y, Image img) {
         super(x, y, img);
         Sprite.setPlayer();
@@ -26,6 +30,7 @@ public class Bomber extends Entity {
     @Override
     public void update() {
         set_animate(1000);
+        isWin();
         isAlive();
         if (!alive) {
             if (System.currentTimeMillis() - bomb1.timeStart > 4000) {
@@ -93,11 +98,13 @@ public class Bomber extends Entity {
                     bomb2.setPowerUp(true);
                     break;
             }
-            map[y_ / Sprite.DEFAULT_SIZE][x_ / Sprite.DEFAULT_SIZE] = ' ';
             x = x_;
             y = y_;
             xUnit = x_ / Sprite.DEFAULT_SIZE;
             yUnit = y_ / Sprite.DEFAULT_SIZE;
+            if (map[yUnit][xUnit] < '0' || map[yUnit][xUnit] > '5') {
+                map[yUnit][xUnit] = ' ';
+            }
             if (bomb1.check == true && ((bomb1.xUnit != xUnit && bomb1.xUnit != (x + 20) / Sprite.DEFAULT_SIZE)
                     || (bomb1.yUnit != yUnit && bomb1.yUnit != (y + 25) / Sprite.DEFAULT_SIZE))) {
                 map[bomb1.yUnit][bomb1.xUnit] = '+';
@@ -115,16 +122,17 @@ public class Bomber extends Entity {
         int y_ = (y + 25) / Sprite.DEFAULT_SIZE;
         x = x / Sprite.DEFAULT_SIZE;
         y = (y + 3) / Sprite.DEFAULT_SIZE;
-        if (map[y][x] == '-' && map[y][x_] == '-' && map[y_][x] == '-' && map[y_][x_] == '-') {
-            return true;
-        }
-        if (( map[y][x] == ' '
+        if ((map[y][x] == ' ' || (map[y][x] >= '1' && map[y][x] <= '5') || map[y][x] == '-'
+                || (map[y][x] == 'X' && SettingGame.numberEnemies == 0)
                 || map[y][x] == 'D' || map[y][x] == 'B' || map[y][x] == 'S' || map[y][x] == 'F')
-                && (map[y][x_] == ' '
+                && (map[y][x_] == ' ' || (map[y][x_] >= '1' && map[y][x_] <= '5') || map[y][x_] == '-'
+                || (map[y][x_] == 'X' && SettingGame.numberEnemies == 0)
                 || map[y][x_] == 'D' || map[y][x_] == 'B' || map[y][x_] == 'S' || map[y][x_] == 'F')
-                && (map[y_][x] == ' '
+                && (map[y_][x] == ' ' || (map[y_][x] >= '1' && map[y_][x] <= '5') || map[y_][x] == '-'
+                || (map[y_][x] == 'X' && SettingGame.numberEnemies == 0)
                 || map[y_][x] == 'D' || map[y_][x] == 'B' || map[y_][x] == 'S' || map[y_][x] == 'F')
-                && (map[y_][x_] == ' '
+                && (map[y_][x_] == ' ' || (map[y_][x_] >= '1' && map[y_][x_] <= '5') || map[y_][x_] == '-'
+                || (map[y_][x_] == 'X' && SettingGame.numberEnemies == 0)
                 || map[y_][x_] == 'D' || map[y_][x_] == 'B' || map[y_][x_] == 'S' || map[y_][x_] == 'F')) {
             return true;
         }
@@ -150,13 +158,20 @@ public class Bomber extends Entity {
     }
 
     public void isAlive() {
-        int x_ = (x + 24) / Sprite.DEFAULT_SIZE;
-        int y_ = (y + 30) / Sprite.DEFAULT_SIZE;
-        int x = xUnit;
-        int y = yUnit;
-        if (map[y][x] == '-' || map[y][x_] == '-' || map[y_][x] == '-' || map[y_][x_] == '-') {
-            timeDie = System.currentTimeMillis();
-            alive = false;
+        int x_ = (this.x + 30) / Sprite.DEFAULT_SIZE;
+        int y_ = (this.y + 30) / Sprite.DEFAULT_SIZE;
+        int x = this.x / Sprite.DEFAULT_SIZE;
+        int y = this.y / Sprite.DEFAULT_SIZE;
+        /** EDIT */
+        if (alive) {
+            if (map[y][x] == '-' || map[y][x_] == '-' || map[y_][x] == '-' || map[y_][x_] == '-'
+                    || (map[y][x] >= '1' && map[y][x] <= '5')
+                    || (map[y_][x] >= '1' && map[y_][x] <= '5')
+                    || (map[y][x_] >= '1' && map[y][x_] <= '5')
+                    || (map[y_][x_] >= '1' && map[y_][x_] <= '5')) {
+                timeDie = System.currentTimeMillis();
+                alive = false;
+            }
         }
     }
 
@@ -167,7 +182,6 @@ public class Bomber extends Entity {
     public void restart() {
         if (tym > 0) {
             tym--;
-            System.out.println("tym = " + tym);
             xUnit = 1;
             yUnit = 1;
             x = xUnit * Sprite.DEFAULT_SIZE;
@@ -178,6 +192,30 @@ public class Bomber extends Entity {
             alive = true;
         } else {
             System.out.println("LOSE");
+            lose = true;
+        }
+    }
+
+    public void isWin() {
+        int x_ = (x + 12) / Sprite.DEFAULT_SIZE;
+        int y_ = (y + 15) / Sprite.DEFAULT_SIZE;
+        if (map[y_][x_] == 'X' && SettingGame.numberEnemies == 0) {
+            win = true;
+        }
+    }
+
+    public void keyReleased(KeyEvent event) {
+        if (event.getCode() == KeyCode.UP) {
+            sprite = Sprite.player_up_1;
+        }
+        if (event.getCode() == KeyCode.RIGHT) {
+            sprite = Sprite.player_right_1;
+        }
+        if (event.getCode() == KeyCode.DOWN) {
+            sprite = Sprite.player_down_1;
+        }
+        if (event.getCode() == KeyCode.LEFT) {
+            sprite = Sprite.player_left_1;
         }
     }
 }

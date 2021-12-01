@@ -122,7 +122,6 @@ public class SettingGame {
         };
         timer.start();
         board.createMap("levels/Level" + Integer.toString(level) + ".txt");
-        entities.add(bomberman);
         entities.add(bomberman.bomb1);
         entities.add(bomberman.bomb2);
         for (int i = 0; i < 9; i++) {
@@ -134,6 +133,9 @@ public class SettingGame {
             Platform.runLater(() -> {
                 BombermanGame.stages.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event1 -> {
                     bomberman.handle(event1);
+                });
+                BombermanGame.stages.getScene().addEventFilter(KeyEvent.KEY_RELEASED, event1 -> {
+                    bomberman.keyReleased(event1);
                 });
             });
         }

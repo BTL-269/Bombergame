@@ -12,7 +12,6 @@ public class Items extends Entity {
     public Items(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
         symbol = map[yUnit][xUnit];
-        System.out.println("symbol " + symbol + " " + map[yUnit][xUnit]);
     }
 
     @Override
