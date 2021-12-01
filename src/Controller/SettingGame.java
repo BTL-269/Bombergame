@@ -2,7 +2,7 @@ package Controller;
 
 import entities.Bomber;
 import entities.Entity;
-import entities.Bomb;
+import entities.emeny.Enemy;
 import graphics.Board;
 import graphics.Sprite;
 import javafx.animation.AnimationTimer;
@@ -20,8 +20,6 @@ import javafx.scene.layout.Pane;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SettingGame {
     public static final int WIDTH = 20;
@@ -32,18 +30,22 @@ public class SettingGame {
 
     private GraphicsContext gc;
     private Canvas canvas;
-    private List<Entity> entities = new ArrayList<Entity>();
     private Board board = new Board();
-    private Bomber bomberman = new Bomber(1, 1, Sprite.child_right.getFxImage());
+    public static Bomber bomberman = new Bomber(1, 1, Sprite.child_right.getFxImage());
 
     public void update() {
-        entities.forEach(Entity::update);
+        Board.entities.forEach(Entity::update);
     }
 
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        board.getStillObjects().forEach(g -> g.render(gc));
-        entities.forEach(g -> g.render(gc));
+        Board.stillObjects.forEach(g -> g.render(gc));
+        Board.entities.forEach(g -> g.render(gc));
+        for (Entity e : Board.entities) {
+            if (e.getText() != null) {
+                e.getText().renderText(gc);
+            }
+        }
     }
 
     @FXML
@@ -121,14 +123,15 @@ public class SettingGame {
             }
         };
         timer.start();
-        board.createMap("levels/Level" + Integer.toString(level) + ".txt");
-        entities.add(bomberman);
-        entities.add(bomberman.bomb);
-        for (int i = 0; i < 5; i++) {
-            entities.add(bomberman.bomb.explosions.get(i));
+        board.createMap("res/levels/Level" + Integer.toString(level) + ".txt");
+        Board.entities.add(bomberman);
+        Board.entities.add(bomberman.bomb1);
+        Board.entities.add(bomberman.bomb2);
+        for (int i = 0; i < 9; i++) {
+            Board.entities.add(bomberman.bomb1.explosions.get(i));
+            Board.entities.add(bomberman.bomb2.explosions.get(i));
         }
-        entities.add(bomberman);
-
+        Board.entities.add(bomberman);
         if (BombermanGame.stages.getScene() != null) {
             Platform.runLater(() -> {
                 BombermanGame.stages.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event1 -> {

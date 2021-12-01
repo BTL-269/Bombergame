@@ -12,47 +12,47 @@
    <children>
       <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="101.0" layoutY="106.0" onMouseClicked="#clickLevel1" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/level1.png" />
+            <Image url="@images/level1.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="273.0" layoutY="106.0" onMouseClicked="#clickLevel2" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/level2.png" />
+            <Image url="@images/level2.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="440.0" layoutY="106.0" onMouseClicked="#clickLevel3" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/level3.png" />
+            <Image url="@images/level3.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="611.0" layoutY="106.0" onMouseClicked="#clickLevel4" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/level4.png" />
+            <Image url="@images/level4.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="258.0" layoutY="266.0" onMouseClicked="#clickPlayer2" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/player2.png" />
+            <Image url="@images/player2.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="383.0" layoutY="266.0" onMouseClicked="#clickPlayer3" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/player3.png" />
+            <Image url="@images/player3.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="509.0" layoutY="266.0" onMouseClicked="#clickPlayer4" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/player4.png" />
+            <Image url="@images/player4.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="124.0" layoutY="266.0" onMouseClicked="#clickPlayer1" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/player1.png" />
+            <Image url="@images/player1.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="634.0" layoutY="266.0" onMouseClicked="#clickPlayer5" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/player5.png" />
+            <Image url="@images/player5.png" />
          </image>
       </ImageView>
       <Label layoutX="137.0" layoutY="230.0" text="Level1">
