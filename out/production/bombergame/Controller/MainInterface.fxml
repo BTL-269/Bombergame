@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainPane" prefHeight="680.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainGame">
+   <children>
+      <Pane layoutX="4.0" prefHeight="100.0" prefWidth="800.0" style="-fx-background-color: #7cbcf5;" styleClass="border" stylesheets="@style.css" AnchorPane.leftAnchor="0.0">
+         <children>
+            <Pane layoutX="87.0" layoutY="10.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 15;" styleClass="selected" stylesheets="@style.css">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#clickBack" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/back.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="357.0" layoutY="10.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 15;" styleClass="selected" stylesheets="@style.css">
+               <children>
+                  <ImageView fx:id="imgPause" fitHeight="60.0" fitWidth="60.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#clickPause" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/continue.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="604.0" layoutY="10.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 15;" styleClass="selected" stylesheets="@style.css">
+               <children>
+                  <ImageView fx:id="imgRadio" fitHeight="60.0" fitWidth="60.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#clickRadio" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/speaker.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutX="800.0" layoutY="100.0" prefHeight="680.0" prefWidth="200.0" style="-fx-background-color: #7cbcf5;" styleClass="border" stylesheets="@style.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/highScore.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="highScore" layoutX="50.0" layoutY="103.0" prefHeight="38.0" prefWidth="150.0" styleClass="transparent" stylesheets="@style.css">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </TextField>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="15.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/heart.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/timer.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="15.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/score.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="heart" layoutX="50.0" layoutY="341.0" prefHeight="38.0" prefWidth="150.0" styleClass="transparent" stylesheets="@style.css">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="time" layoutX="50.0" layoutY="185.0" prefHeight="38.0" prefWidth="150.0" styleClass="transparent" stylesheets="@style.css">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="score" layoutX="50.0" layoutY="261.0" prefHeight="38.0" prefWidth="150.0" styleClass="transparent" stylesheets="@style.css">
+               <font>
+                  <Font name="Cambria Bold" size="20.0" />
+               </font>
+            </TextField>
+            <Label fx:id="levelLabel" layoutX="18.0" layoutY="28.0" prefHeight="40.0" prefWidth="165.0" textFill="#e40000">
+               <font>
+                  <Font name="Cambria Bold" size="22.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="51.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/bomb.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="39.0" layoutY="551.0" text="Click Space" textFill="#d95f0b">
+               <font>
+                  <Font name="Cambria Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

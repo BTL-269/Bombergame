@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pane" prefHeight="680.0" prefWidth="1000.0" styleClass="result" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Result">
+   <children>
+      <ImageView fx:id="resultImage" fitHeight="152.0" fitWidth="700.0" layoutX="150.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="scoreLabel" layoutX="411.0" layoutY="371.0" prefHeight="60.0" prefWidth="260.0">
+         <font>
+            <Font name="Cambria Bold" size="28.0" />
+         </font>
+      </Label>
+      <Button layoutX="129.0" layoutY="567.0" mnemonicParsing="false" onAction="#clickBack" prefHeight="55.0" prefWidth="170.0" stylesheets="@style.css" text="Back" textFill="WHITE">
+         <font>
+            <Font name="Cambria Bold" size="24.0" />
+         </font>
+         <styleClass>
+            <String fx:value="button-menu" />
+            <String fx:value="selected" />
+         </styleClass>
+      </Button>
+      <Button fx:id="resultButton" layoutX="692.0" layoutY="567.0" mnemonicParsing="false" onAction="#clickResult" prefHeight="55.0" prefWidth="170.0" stylesheets="@style.css" textFill="WHITE">
+         <font>
+            <Font name="Cambria Bold" size="20.0" />
+         </font>
+         <styleClass>
+            <String fx:value="button-menu" />
+            <String fx:value="selected" />
+         </styleClass>
+      </Button>
+   </children>
+</Pane>
