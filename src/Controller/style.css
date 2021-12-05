@@ -21,3 +21,6 @@
    -fx-border-width: 5;
     -fx-border-color: #052146;
 }
+.result {
+    -fx-background-image: url("images/result.png");
+}

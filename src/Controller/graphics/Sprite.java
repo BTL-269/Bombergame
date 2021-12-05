@@ -1,6 +1,5 @@
 package Controller.graphics;
 
-import Controller.MainGame;
 import Controller.SettingGame;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -31,14 +30,20 @@ public class Sprite {
 	public static Sprite grass2 = new Sprite(DEFAULT_SIZE, 3, 8, SpriteSheet.tiles, 32, 32);
 	public static Sprite grass3 = new Sprite(DEFAULT_SIZE, 4, 7, SpriteSheet.tiles, 32, 32);
 	public static Sprite grass4 = new Sprite(DEFAULT_SIZE, 5, 6, SpriteSheet.tiles, 32, 32);
-	public static Sprite grass5 = new Sprite(DEFAULT_SIZE, 5, 6, SpriteSheet.tiles, 32, 32);
 
 	public static Sprite brick1 = new Sprite(DEFAULT_SIZE, 1, 7, SpriteSheet.tiles, 32, 32);
 	public static Sprite brick2 = new Sprite(DEFAULT_SIZE, 1, 8, SpriteSheet.tiles, 32, 32);
 	public static Sprite brick3 = new Sprite(DEFAULT_SIZE, 2, 7, SpriteSheet.tiles, 32, 32);
 	public static Sprite brick4 = new Sprite(DEFAULT_SIZE, 2, 8, SpriteSheet.tiles, 32, 32);
-	public static Sprite brick5 = new Sprite(DEFAULT_SIZE, 2, 6, SpriteSheet.tiles, 32, 32);
-	public static Sprite brick6 = new Sprite(DEFAULT_SIZE, 3, 6, SpriteSheet.tiles, 32, 32);
+
+	public static Sprite brick1_break1 = new Sprite(DEFAULT_SIZE, 6, 7, SpriteSheet.tiles, 32, 32);
+	public static Sprite brick1_break2 = new Sprite(DEFAULT_SIZE, 6, 8, SpriteSheet.tiles, 32, 32);
+	public static Sprite brick2_break1 = new Sprite(DEFAULT_SIZE, 7, 7, SpriteSheet.tiles, 32, 32);
+	public static Sprite brick2_break2 = new Sprite(DEFAULT_SIZE, 7, 8, SpriteSheet.tiles, 32, 32);
+	public static Sprite brick3_break1 = new Sprite(DEFAULT_SIZE, 8, 7, SpriteSheet.tiles, 32, 32);
+	public static Sprite brick3_break2 = new Sprite(DEFAULT_SIZE, 8, 8, SpriteSheet.tiles, 32, 32);
+	public static Sprite brick4_break1 = new Sprite(DEFAULT_SIZE, 9, 7, SpriteSheet.tiles, 32, 32);
+	public static Sprite brick4_break2 = new Sprite(DEFAULT_SIZE, 9, 8, SpriteSheet.tiles, 32, 32);
 
 	public static Sprite wall1 = new Sprite(DEFAULT_SIZE, 0, 6, SpriteSheet.tiles, 32, 32);
 	public static Sprite wall2 = new Sprite(DEFAULT_SIZE, 0, 7, SpriteSheet.tiles, 32, 32);
@@ -48,6 +53,10 @@ public class Sprite {
 	public static Sprite portal = new Sprite(DEFAULT_SIZE, 5, 7, SpriteSheet.tiles, 32, 32);
 
 	public static Sprite gift = new Sprite(DEFAULT_SIZE, 5, 8, SpriteSheet.tiles, 32, 32);
+	public static Sprite gift_break1 = new Sprite(DEFAULT_SIZE, 10, 7, SpriteSheet.tiles, 32, 32);
+	public static Sprite gift_break2 = new Sprite(DEFAULT_SIZE, 10, 8, SpriteSheet.tiles, 32, 32);
+
+
 	/*
 	|--------------------------------------------------------------------------
 	| Bomber Sprites
@@ -243,10 +252,7 @@ public class Sprite {
 	 */
 	public static Sprite powerup_bombs = new Sprite(DEFAULT_SIZE, 0, 12, SpriteSheet.tiles, 32, 32);
 	public static Sprite powerup_flames = new Sprite(DEFAULT_SIZE, 1, 12, SpriteSheet.tiles, 32, 32);
-	public static Sprite powerup_wallpass = new Sprite(DEFAULT_SIZE, 2, 12, SpriteSheet.tiles, 32, 32);
 	public static Sprite powerup_detonator = new Sprite(DEFAULT_SIZE, 3, 12, SpriteSheet.tiles, 32, 32);
-	public static Sprite powerup_bombpass = new Sprite(DEFAULT_SIZE, 4, 12, SpriteSheet.tiles, 32, 32);
-	public static Sprite powerup_flamepass = new Sprite(DEFAULT_SIZE, 5, 12, SpriteSheet.tiles, 32, 32);
 	public static Sprite powerup_speed = new Sprite(DEFAULT_SIZE, 6, 12, SpriteSheet.tiles, 32, 32);
 
 	/*
@@ -266,6 +272,28 @@ public class Sprite {
 	public static Sprite player_left;
 	public static Sprite player_left_1;
 	public static Sprite player_left_2;
+
+	/*
+   |--------------------------------------------------------------------------
+   | Enemy
+   |--------------------------------------------------------------------------
+    */
+	public static Sprite enemy_right1;
+	public static Sprite enemy_right2;
+	public static Sprite enemy_right3;
+	public static Sprite enemy_left1;
+	public static Sprite enemy_left2;
+	public static Sprite enemy_left3;
+	public static Sprite enemy_dead;
+
+	/*
+	|--------------------------------------------------------------------------
+	| Brick_Break
+	|--------------------------------------------------------------------------
+	 */
+	public static Sprite brick_break;
+	public static Sprite brick_break1;
+	public static Sprite brick_break2;
 
 	/*
 	|--------------------------------------------------------------------------
@@ -350,6 +378,56 @@ public class Sprite {
 		}
 		Image input = new ImageView(wr).getImage();
 		return input;
+	}
+
+	public static void setEnemy(char c) {
+		switch (c) {
+			case '1':
+				enemy_right1 = balloom_right1;
+				enemy_right2 = balloom_right2;
+				enemy_right3 = balloom_right3;
+				enemy_left1 = balloom_left1;
+				enemy_left2 = balloom_left2;
+				enemy_left3 = balloom_left3;
+				enemy_dead = balloom_dead;
+				break;
+			case '2':
+				enemy_right1 = oneal_right1;
+				enemy_right2 = oneal_right2;
+				enemy_right3 = oneal_right3;
+				enemy_left1 = oneal_left1;
+				enemy_left2 = oneal_left2;
+				enemy_left3 = oneal_left3;
+				enemy_dead = oneal_dead;
+				break;
+			case '3':
+				enemy_right1 = doll_right1;
+				enemy_right2 = doll_right2;
+				enemy_right3 = doll_right3;
+				enemy_left1 = doll_left1;
+				enemy_left2 = doll_left2;
+				enemy_left3 = doll_left3;
+				enemy_dead = doll_dead;
+				break;
+			case '4':
+				enemy_right1 = minvo_right1;
+				enemy_right2 = minvo_right2;
+				enemy_right3 = minvo_right3;
+				enemy_left1 = minvo_left1;
+				enemy_left2 = minvo_left2;
+				enemy_left3 = minvo_left3;
+				enemy_dead = minvo_dead;
+				break;
+			case '5':
+				enemy_right1 = kondoria_right1;
+				enemy_right2 = kondoria_right2;
+				enemy_right3 = kondoria_right3;
+				enemy_left1 = kondoria_left1;
+				enemy_left2 = kondoria_left2;
+				enemy_left3 = kondoria_left3;
+				enemy_dead = kondoria_dead;
+				break;
+		}
 	}
 
 	public static void setPlayer() {
@@ -444,6 +522,9 @@ public class Sprite {
 				grass = grass1;
 				brick = brick1;
 				wall = wall1;
+				brick_break = brick1;
+				brick_break1 = brick1_break1;
+				brick_break2 = brick1_break2;
 			}
 			break;
 			case 2:
@@ -451,6 +532,9 @@ public class Sprite {
 				grass = grass2;
 				brick = brick2;
 				wall = wall2;
+				brick_break = brick2;
+				brick_break1 = brick2_break1;
+				brick_break2 = brick2_break2;
 			}
 			break;
 			case 3:
@@ -458,6 +542,9 @@ public class Sprite {
 				grass = grass3;
 				brick = brick3;
 				wall = wall3;
+				brick_break = brick3;
+				brick_break1 = brick3_break1;
+				brick_break2 = brick3_break2;
 			}
 			break;
 			case 4:
@@ -465,10 +552,11 @@ public class Sprite {
 				grass = grass4;
 				brick = brick4;
 				wall = wall4;
+				brick_break = brick4;
+				brick_break1 = brick4_break1;
+				brick_break2 = brick4_break2;
 			}
 			break;
 		}
 	}
-
-
 }

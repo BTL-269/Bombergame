@@ -15,14 +15,17 @@ public abstract class Entity extends Board {
     protected int xUnit;
     protected int yUnit;
     protected int _animate = 0;
+    protected Text text;
+    protected boolean isRemove;
 
     public static final int UP = 0;
     public static final int RIGHT = 1;
     public static final int DOWN = 2;
     public static final int LEFT = 3;
-    public static final int CENTER = 4;
+    public static final int CENTER = -1;
 
     protected Image img;
+    protected Sprite sprite;
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
     public Entity(int xUnit, int yUnit, Image img) {
@@ -32,6 +35,26 @@ public abstract class Entity extends Board {
         this.img = img;
         this.xUnit = xUnit;
         this.yUnit = yUnit;
+    }
+
+    public int getXUnit() {
+        return xUnit;
+    }
+
+    public int getYUnit() {
+        return yUnit;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public Text getText() {
+        return text;
     }
 
     public void render(GraphicsContext gc) {

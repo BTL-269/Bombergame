@@ -71,12 +71,14 @@ public class SettingGame {
 
     @FXML
     void clickPlay(ActionEvent event) {
+        MainGame.restart();
         try {
             URL url = SettingGame.class.getResource("MainInterface.fxml");
             if (url == null) {
                 throw new FileNotFoundException("File is not found!");
             }
             paneNext.getChildren().add(new FXMLLoader().load(url));
+            MainGame.playTime = System.currentTimeMillis();
         } catch (Exception e) {
             e.printStackTrace();
         }

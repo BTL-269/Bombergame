@@ -4,6 +4,10 @@ package Controller.graphics;
 import Controller.MainGame;
 import Controller.SettingGame;
 import Controller.entities.*;
+import Controller.entities.enemy.Balloon;
+import Controller.entities.enemy.Doll;
+import Controller.entities.enemy.Enemy;
+import Controller.entities.enemy.Oneal;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,102 +19,59 @@ import java.util.List;
 public class Board {
 
     private List<Entity> stillObjects = new ArrayList<Entity>();
+
     public List<Entity> getStillObjects() {
         return stillObjects;
     }
+
     public static char[][] map = new char[MainGame.HEIGHT][MainGame.WIDTH];
 
     public void createMap(String path) {
         try {
-
+            stillObjects.clear();
+            MainGame.entities.clear();
+            Sprite.setPlayer();
+            Sprite.setMap();
+            MainGame.numberEnemies = 0;
             URL absPath = Board.class.getResource("/" + path);
             BufferedReader in = new BufferedReader(new InputStreamReader(absPath.openStream()));
             for (int i = 0; i < MainGame.HEIGHT; i++) {
                 String s = in.readLine();
                 s.trim();
                 for (int j = 0; j < s.length(); j++) {
-                    map[i][j] = s.charAt(j);
                     Entity object = null;
-                    if (SettingGame.typeMap == 1) {
-                        object = new Grass(j, i, Sprite.grass1.getFxImage());
-                    } else if (SettingGame.typeMap == 2) {
-                        object = new Grass(j, i, Sprite.grass2.getFxImage());
-                    } else if (SettingGame.typeMap == 3) {
-                        object = new Grass(j, i, Sprite.grass3.getFxImage());
-                    } else {
-                        object = new Grass(j, i, Sprite.grass4.getFxImage());
+                    Entity grass = new Grass(j, i, Sprite.grass.getFxImage());
+                    if (grass != null) {
+                        stillObjects.add(grass);
                     }
-                    stillObjects.add(object);
+                    map[i][j] = s.charAt(j);
                     switch (s.charAt(j)) {
                         case '#':
-                            if (SettingGame.typeMap == 1) {
-                                object = new Wall(j, i, Sprite.wall1.getFxImage());
-                            } else if (SettingGame.typeMap == 2) {
-                                object = new Wall(j, i, Sprite.wall2.getFxImage());
-                            } else if (SettingGame.typeMap == 3) {
-                                object = new Wall(j, i, Sprite.wall3.getFxImage());
-                            } else {
-                                object = new Wall(j, i, Sprite.wall4.getFxImage());
-                            }
+                            object = new Wall(j, i, Sprite.wall.getFxImage());
                             break;
                         case '*':
-                            if (SettingGame.typeMap == 1) {
-                                object = new Brick(j, i, Sprite.brick1.getFxImage());
-                            } else if (SettingGame.typeMap == 2) {
-                                object = new Brick(j, i, Sprite.brick2.getFxImage());
-                            } else if (SettingGame.typeMap == 3) {
-                                object = new Brick(j, i, Sprite.brick3.getFxImage());
-                            } else {
-                                object = new Brick(j, i, Sprite.brick4.getFxImage());
-                            }
+                            MainGame.entities.add(new Brick(j, i, Sprite.brick.getFxImage()));
                             break;
                         case 'x':
-                            object = new Portal(j, i, Sprite.portal.getFxImage());
-                            stillObjects.add(object);
-                            if (SettingGame.typeMap == 1) {
-                                object = new Brick(j, i, Sprite.brick1.getFxImage());
-                            } else if (SettingGame.typeMap == 2) {
-                                object = new Brick(j, i, Sprite.brick2.getFxImage());
-                            } else if (SettingGame.typeMap == 3) {
-                                object = new Brick(j, i, Sprite.brick3.getFxImage());
-                            } else {
-                                object = new Brick(j, i, Sprite.brick4.getFxImage());
-                            }
+                            MainGame.entities.add(new Portal(j, i, Sprite.brick.getFxImage()));
                             break;
                         case '1':
-                            object = new Enemies(j, i, Sprite.balloom_left1.getFxImage());
+                            MainGame.entities.add(new Balloon(j, i, Sprite.balloom_left1.getFxImage()));
+                            MainGame.numberEnemies++;
                             break;
                         case '2':
-                            object = new Enemies(j, i, Sprite.oneal_left1.getFxImage());
+                            MainGame.entities.add(new Oneal(j, i, Sprite.oneal_left1.getFxImage()));
+                            MainGame.numberEnemies++;
                             break;
                         case '3':
-                            object = new Enemies(j, i, Sprite.minvo_left1.getFxImage());
-                            break;
-                        case '4':
-                            object = new Enemies(j, i, Sprite.doll_left1.getFxImage());
-                            break;
-                        case '5':
-                            object = new Enemies(j, i, Sprite.kondoria_left1.getFxImage());
+                            MainGame.entities.add(new Doll(j, i, Sprite.doll_left1.getFxImage()));
+                            MainGame.numberEnemies++;
                             break;
                         case 'b':
-                            object = new Items(j, i, Sprite.powerup_bombs.getFxImage());
-                            stillObjects.add(object);
-                            object = new Items(j, i, Sprite.gift.getFxImage());
-                            break;
                         case 'd':
-                            object = new Items(j, i, Sprite.powerup_detonator.getFxImage());
-                            stillObjects.add(object);
-                            object = new Items(j, i, Sprite.gift.getFxImage());
-                            break;
-                        case 's':
-                            object = new Items(j, i, Sprite.powerup_speed.getFxImage());
-                            stillObjects.add(object);
-                            object = new Items(j, i, Sprite.gift.getFxImage());
-                            break;
                         case 'f':
-                            object = new Items(j, i, Sprite.powerup_flames.getFxImage());
-                            stillObjects.add(object);
-                            object = new Items(j, i, Sprite.gift.getFxImage());
+                        case 's':
+                            MainGame.entities.add(new Items(j, i, Sprite.brick.getFxImage()));
                             break;
                         default:
                             break;
