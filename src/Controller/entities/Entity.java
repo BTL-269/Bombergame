@@ -6,25 +6,20 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public abstract class Entity extends Board {
-    //Tọa độ X tính từ góc trái trên trong Canvas
-    protected int x;
-
-    //Tọa độ Y tính từ góc trái trên trong Canvas
-    protected int y;
-
-    protected int xUnit;
-    protected int yUnit;
-    protected int _animate = 0;
-    protected Text text;
-    protected boolean isRemove;
-
     public static final int UP = 0;
     public static final int RIGHT = 1;
     public static final int DOWN = 2;
     public static final int LEFT = 3;
     public static final int CENTER = -1;
 
+    protected int x; // toa do pixel x tinh tu ben trai sang
+    protected int y; // toa do pixel y tinh tu tren xuong
+    protected int xUnit; // toa do x tren map
+    protected int yUnit; // toa do y tren map
     protected Image img;
+    protected Text text;
+    protected int _animate = 0;
+    protected boolean isRemove;
     protected Sprite sprite;
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
@@ -35,6 +30,7 @@ public abstract class Entity extends Board {
         this.img = img;
         this.xUnit = xUnit;
         this.yUnit = yUnit;
+        isRemove = false;
     }
 
     public int getXUnit() {

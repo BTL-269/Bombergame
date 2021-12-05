@@ -4,12 +4,10 @@ package Controller.graphics;
 import Controller.MainGame;
 import Controller.SettingGame;
 import Controller.entities.*;
-import Controller.entities.enemy.Balloon;
-import Controller.entities.enemy.Doll;
-import Controller.entities.enemy.Enemy;
-import Controller.entities.enemy.Oneal;
+import Controller.entities.enemy.*;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -18,60 +16,56 @@ import java.util.List;
 
 public class Board {
 
-    private List<Entity> stillObjects = new ArrayList<Entity>();
-
-    public List<Entity> getStillObjects() {
-        return stillObjects;
-    }
-
+    public static List<Entity> stillObjects = new ArrayList<>();
+    public static List<Entity> entities = new ArrayList<>();
     public static char[][] map = new char[MainGame.HEIGHT][MainGame.WIDTH];
 
-    public void createMap(String path) {
+    public void createMap(String fileName) {
         try {
+            entities.clear();
             stillObjects.clear();
-            MainGame.entities.clear();
             Sprite.setPlayer();
             Sprite.setMap();
-            MainGame.numberEnemies = 0;
-            URL absPath = Board.class.getResource("/" + path);
-            BufferedReader in = new BufferedReader(new InputStreamReader(absPath.openStream()));
+            FileReader fr = new FileReader(fileName);
+            BufferedReader br = new BufferedReader(fr);
             for (int i = 0; i < MainGame.HEIGHT; i++) {
-                String s = in.readLine();
-                s.trim();
+                String s = br.readLine();
                 for (int j = 0; j < s.length(); j++) {
                     Entity object = null;
                     Entity grass = new Grass(j, i, Sprite.grass.getFxImage());
-                    if (grass != null) {
-                        stillObjects.add(grass);
-                    }
+                    stillObjects.add(grass);
                     map[i][j] = s.charAt(j);
                     switch (s.charAt(j)) {
                         case '#':
                             object = new Wall(j, i, Sprite.wall.getFxImage());
                             break;
                         case '*':
-                            MainGame.entities.add(new Brick(j, i, Sprite.brick.getFxImage()));
+                            entities.add(new Brick(j, i, Sprite.brick.getFxImage()));
                             break;
                         case 'x':
-                            MainGame.entities.add(new Portal(j, i, Sprite.brick.getFxImage()));
+                            entities.add(new Portal(j, i, Sprite.brick.getFxImage()));
                             break;
                         case '1':
-                            MainGame.entities.add(new Balloon(j, i, Sprite.balloom_left1.getFxImage()));
-                            MainGame.numberEnemies++;
+                            entities.add(new Balloon(j, i, Sprite.balloom_left1.getFxImage()));
                             break;
                         case '2':
-                            MainGame.entities.add(new Oneal(j, i, Sprite.oneal_left1.getFxImage()));
-                            MainGame.numberEnemies++;
+                            entities.add(new Oneal(j, i, Sprite.oneal_left1.getFxImage()));
                             break;
                         case '3':
-                            MainGame.entities.add(new Doll(j, i, Sprite.doll_left1.getFxImage()));
-                            MainGame.numberEnemies++;
+                            entities.add(new Doll(j, i, Sprite.doll_left1.getFxImage()));
+                            break;
+                        case '4':
+                            entities.add(new Minvo(j, i, Sprite.minvo_left1.getFxImage()));
+                            break;
+                        case '5':
+                            entities.add(new Kondoria(j, i, Sprite.kondoria_left1.getFxImage()));
                             break;
                         case 'b':
                         case 'd':
                         case 'f':
                         case 's':
-                            MainGame.entities.add(new Items(j, i, Sprite.brick.getFxImage()));
+                        case 'w':
+                            entities.add(new Items(j, i, Sprite.brick.getFxImage()));
                             break;
                         default:
                             break;
@@ -81,7 +75,8 @@ public class Board {
                     }
                 }
             }
-            in.close();
+            br.close();
+            fr.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

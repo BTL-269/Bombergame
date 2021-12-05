@@ -1,4 +1,5 @@
 package Controller.entities;
+
 import Controller.MainGame;
 import Controller.MenuGame;
 import Controller.graphics.Sprite;
@@ -64,14 +65,14 @@ public class Bomber extends Entity {
             x_ += step;
             type = RIGHT;
         }
-        if (event.getCode() == KeyCode.SPACE) {
+        if (event.getCode() == KeyCode.SHIFT) {
             if (System.currentTimeMillis() - bomb1.timeStart >= 4000) {
                 bomb1.setXY((x + 12) / Sprite.DEFAULT_SIZE, (y + 15) / Sprite.DEFAULT_SIZE); // + kí hiệu khi player đặt bomb
                 bomb1.timeStart = System.currentTimeMillis();
                 bomb1.check = true;
                 type = 4;
             } else {
-                if (bombItem == true && System.currentTimeMillis() - bomb2.timeStart > 4000) {
+                if (bombItem && System.currentTimeMillis() - bomb2.timeStart > 4000) {
                     bomb2.setXY((x + 12) / Sprite.DEFAULT_SIZE, (y + 15) / Sprite.DEFAULT_SIZE); // + kí hiệu khi player đặt bomb
                     bomb2.timeStart = System.currentTimeMillis();
                     bomb2.check = true;
@@ -103,12 +104,12 @@ public class Bomber extends Entity {
             if (map[yUnit][xUnit] < '0' || map[yUnit][xUnit] > '5') {
                 map[yUnit][xUnit] = ' ';
             }
-            if (bomb1.check == true && ((bomb1.xUnit != xUnit && bomb1.xUnit != (x + 20) / Sprite.DEFAULT_SIZE)
+            if (bomb1.check && ((bomb1.xUnit != xUnit && bomb1.xUnit != (x + 20) / Sprite.DEFAULT_SIZE)
                     || (bomb1.yUnit != yUnit && bomb1.yUnit != (y + 25) / Sprite.DEFAULT_SIZE))) {
                 map[bomb1.yUnit][bomb1.xUnit] = '+';
             }
             /** nếu bomb item được ăn thì bomb2 được cài đặt. */
-            if (bombItem == true && bomb2.check == true && ((bomb2.xUnit != xUnit && bomb2.xUnit != (x + 20) / Sprite.DEFAULT_SIZE)
+            if (bombItem && bomb2.check && ((bomb2.xUnit != xUnit && bomb2.xUnit != (x + 20) / Sprite.DEFAULT_SIZE)
                     || (bomb2.yUnit != yUnit && bomb2.yUnit != (y + 25) / Sprite.DEFAULT_SIZE))) {
                 map[bomb2.yUnit][bomb2.xUnit] = '+';
             }
@@ -137,7 +138,9 @@ public class Bomber extends Entity {
         return false;
     }
 
-    /** Chọn hoạt ảnh */
+    /**
+     * Chọn hoạt ảnh
+     */
     public void chooseSprite(int type) {
         switch (type) {
             case UP:
@@ -174,7 +177,7 @@ public class Bomber extends Entity {
     }
 
     public void die() {
-        sprite = Sprite.movingSprite(Sprite.player_down, Sprite.grass,_animate, 60);
+        sprite = Sprite.movingSprite(Sprite.player_down, Sprite.grass, _animate, 60);
     }
 
     public void restart() {

@@ -23,8 +23,6 @@ import javafx.scene.media.MediaPlayer;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import static Controller.SettingGame.bomberman;
@@ -41,7 +39,6 @@ public class MainGame implements Initializable {
     private int isPause = 0;
     private GraphicsContext gc;
     private Canvas canvas;
-    public static List<Entity> entities = new ArrayList<Entity>();
     private Board board = new Board();
     public static AnimationTimer timer;
 
@@ -70,13 +67,18 @@ public class MainGame implements Initializable {
     private TextField heart;
 
     public void update() {
-        entities.forEach(Entity::update);
+        Board.entities.forEach(Entity::update);
     }
 
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        board.getStillObjects().forEach(g -> g.render(gc));
-        entities.forEach(g -> g.render(gc));
+        Board.stillObjects.forEach(g -> g.render(gc));
+        Board.entities.forEach(g -> g.render(gc));
+        for (Entity e : Board.entities) {
+            if (e.getText() != null) {
+                e.getText().renderText(gc);
+            }
+        }
     }
 
     public void setDetail() {
@@ -91,9 +93,9 @@ public class MainGame implements Initializable {
         if (playScore > bestMark) {
             bestMark = playScore;
         }
-        if (Bomber.lose == true) {
+        if (Bomber.lose) {
             playScore = 0;
-        } else if (Bomber.win == true) {
+        } else if (Bomber.win) {
             level++;
         }
         Bomber.lose = false;
@@ -189,14 +191,14 @@ public class MainGame implements Initializable {
             }
         };
         timer.start();
-        board.createMap("levels/Level" + Integer.toString(level) + ".txt");
-        entities.add(bomberman.bomb1);
-        entities.add(bomberman.bomb2);
+        board.createMap("res/levels/Level" + Integer.toString(level) + ".txt");
+        Board.entities.add(bomberman.bomb1);
+        Board.entities.add(bomberman.bomb2);
         for (int i = 0; i < 9; i++) {
-            entities.add(bomberman.bomb1.explosions.get(i));
-            entities.add(bomberman.bomb2.explosions.get(i));
+            Board.entities.add(bomberman.bomb1.explosions.get(i));
+            Board.entities.add(bomberman.bomb2.explosions.get(i));
         }
-        entities.add(bomberman);
+        Board.entities.add(bomberman);
         if (mainPane != null) {
             Platform.runLater(() -> {
                 mainPane.addEventFilter(KeyEvent.KEY_PRESSED, event1 -> {

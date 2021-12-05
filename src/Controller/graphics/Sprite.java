@@ -274,19 +274,6 @@ public class Sprite {
 	public static Sprite player_left_2;
 
 	/*
-   |--------------------------------------------------------------------------
-   | Enemy
-   |--------------------------------------------------------------------------
-    */
-	public static Sprite enemy_right1;
-	public static Sprite enemy_right2;
-	public static Sprite enemy_right3;
-	public static Sprite enemy_left1;
-	public static Sprite enemy_left2;
-	public static Sprite enemy_left3;
-	public static Sprite enemy_dead;
-
-	/*
 	|--------------------------------------------------------------------------
 	| Brick_Break
 	|--------------------------------------------------------------------------
@@ -380,54 +367,61 @@ public class Sprite {
 		return input;
 	}
 
-	public static void setEnemy(char c) {
+	public static Sprite[] setEnemy(char c) {
+		Sprite[] sprites = new Sprite[7];
 		switch (c) {
-			case '1':
-				enemy_right1 = balloom_right1;
-				enemy_right2 = balloom_right2;
-				enemy_right3 = balloom_right3;
-				enemy_left1 = balloom_left1;
-				enemy_left2 = balloom_left2;
-				enemy_left3 = balloom_left3;
-				enemy_dead = balloom_dead;
-				break;
-			case '2':
-				enemy_right1 = oneal_right1;
-				enemy_right2 = oneal_right2;
-				enemy_right3 = oneal_right3;
-				enemy_left1 = oneal_left1;
-				enemy_left2 = oneal_left2;
-				enemy_left3 = oneal_left3;
-				enemy_dead = oneal_dead;
-				break;
-			case '3':
-				enemy_right1 = doll_right1;
-				enemy_right2 = doll_right2;
-				enemy_right3 = doll_right3;
-				enemy_left1 = doll_left1;
-				enemy_left2 = doll_left2;
-				enemy_left3 = doll_left3;
-				enemy_dead = doll_dead;
-				break;
-			case '4':
-				enemy_right1 = minvo_right1;
-				enemy_right2 = minvo_right2;
-				enemy_right3 = minvo_right3;
-				enemy_left1 = minvo_left1;
-				enemy_left2 = minvo_left2;
-				enemy_left3 = minvo_left3;
-				enemy_dead = minvo_dead;
-				break;
-			case '5':
-				enemy_right1 = kondoria_right1;
-				enemy_right2 = kondoria_right2;
-				enemy_right3 = kondoria_right3;
-				enemy_left1 = kondoria_left1;
-				enemy_left2 = kondoria_left2;
-				enemy_left3 = kondoria_left3;
-				enemy_dead = kondoria_dead;
-				break;
+			case '1': {
+				sprites[0] = balloom_right1;
+				sprites[1] = balloom_right2;
+				sprites[2] = balloom_right3;
+				sprites[3] = balloom_left1;
+				sprites[4] = balloom_left2;
+				sprites[5] = balloom_left3;
+				sprites[6] = balloom_dead;
+			}
+			break;
+			case '2': {
+				sprites[0] = oneal_right1;
+				sprites[1] = oneal_right2;
+				sprites[2] = oneal_right3;
+				sprites[3] = oneal_left1;
+				sprites[4] = oneal_left2;
+				sprites[5] = oneal_left3;
+				sprites[6] = oneal_dead;
+			}
+			break;
+			case '3': {
+				sprites[0] = doll_right1;
+				sprites[1] = doll_right2;
+				sprites[2] = doll_right3;
+				sprites[3] = doll_left1;
+				sprites[4] = doll_left2;
+				sprites[5] = doll_left3;
+				sprites[6] = doll_dead;
+			}
+			break;
+			case '4': {
+				sprites[0] = minvo_right1;
+				sprites[1] = minvo_right2;
+				sprites[2] = minvo_right3;
+				sprites[3] = minvo_left1;
+				sprites[4] = minvo_left2;
+				sprites[5] = minvo_left3;
+				sprites[6] = minvo_dead;
+			}
+			break;
+			default: {
+				sprites[0] = kondoria_right1;
+				sprites[1] = kondoria_right2;
+				sprites[2] = kondoria_right3;
+				sprites[3] = kondoria_left1;
+				sprites[4] = kondoria_left2;
+				sprites[5] = kondoria_left3;
+				sprites[6] = kondoria_dead;
+			}
+			break;
 		}
+		return sprites;
 	}
 
 	public static void setPlayer() {

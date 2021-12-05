@@ -1,6 +1,5 @@
 package Controller.entities.enemy.AI;
 
-import Controller.MainGame;
 import Controller.entities.enemy.Enemy;
 import Controller.graphics.Sprite;
 import javafx.scene.image.Image;
@@ -9,10 +8,10 @@ import java.util.Random;
 
 public class AILow extends Enemy {
 
-    private Random rd = new Random();
+    private final Random rd = new Random();
 
-    public AILow(int xUnit, int yUnit, Image img, char enemy) {
-        super(xUnit, yUnit, img, enemy);
+    public AILow(int xUnit, int yUnit, Image img, char e) {
+        super(xUnit, yUnit, img, e);
         direction = rd.nextInt(4);
     }
 
@@ -24,7 +23,6 @@ public class AILow extends Enemy {
 
         if (c == '-') {
             die = true;
-            MainGame.playScore += mark;
             return false;
         }
 
@@ -59,8 +57,13 @@ public class AILow extends Enemy {
             y = _y;
             map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] = enemy;
         } else {
-            direction = rd.nextInt(4);
+            direction = findDirection();
         }
+    }
+
+    @Override
+    public int findDirection() {
+        return rd.nextInt(4);
     }
 }
 
