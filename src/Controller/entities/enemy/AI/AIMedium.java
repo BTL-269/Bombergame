@@ -49,43 +49,19 @@ public class AIMedium extends Enemy {
     public Node[][] matrixNode = new Node[MainGame.HEIGHT][MainGame.WIDTH]; // ma tran cac Node
     public List<Node> path = new ArrayList<>(); // đường đi ngắn nhất
 
-    protected static final int MAX_STEPS = Sprite.DEFAULT_SIZE / SPEED;
-    protected int step = 0;
-
     public AIMedium(int xUnit, int yUnit, Image img, char e) {
         super(xUnit, yUnit, img, e);
         direction = findDirection();
     }
 
-    public void moveEnemy() {
-        if (die) {
-            afterDie();
-            return;
-        }
-
-        if (step == MAX_STEPS) {
-            direction = findDirection();
-            step = 0;
-        }
-
-        if (direction == 0) x += SPEED;  // right
-        if (direction == 1) x -= SPEED;  // left
-        if (direction == 2) y += SPEED;  // down
-        if (direction == 3) y -= SPEED;  // up
-
-        if (map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] == '-') {
-            die = true;
-        }
-
-        chooseSprite(direction);
-        step++;
-    }
-
     @Override
     public int findDirection() {
         createMatrixNode();
-        A_star(matrixNode[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE], matrixNode[b.getYUnit()][b.getXUnit()]);
-
+        if (direction == 1 || direction == 3) {
+            A_star(matrixNode[(y + 31)/ Sprite.DEFAULT_SIZE][(x + 31) / Sprite.DEFAULT_SIZE], matrixNode[b.getYUnit()][b.getXUnit()]);
+        } else {
+            A_star(matrixNode[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE], matrixNode[b.getYUnit()][b.getXUnit()]);
+        }
         int i = path.size() - 1;
         if (i == 1) return -1;
         if (path.get(i).x == path.get(i - 1).x) {
@@ -122,16 +98,16 @@ public class AIMedium extends Enemy {
     // list node ke voi node dang xet
     public void setNearList(Node node, List<Node> near) {
         near.clear();
-        if (matrixNode[node.y][node.x + 1].num > 0) { // cung hang, ben phai
+        if (/*node.x < MainGame.WIDTH - 1 && */matrixNode[node.y][node.x + 1].num > 0) { // cung hang, ben phai
             near.add(matrixNode[node.y][node.x + 1]);
         }
-        if (matrixNode[node.y][node.x - 1].num > 0) { // cung hang, ben trai
+        if (/*node. x > 1 && */matrixNode[node.y][node.x - 1].num > 0) { // cung hang, ben trai
             near.add(matrixNode[node.y][node.x - 1]);
         }
-        if (matrixNode[node.y + 1][node.x].num > 0) { // cung cot, ben duoi
+        if (/*node.y < MainGame.HEIGHT - 1 && */matrixNode[node.y + 1][node.x].num > 0) { // cung cot, ben duoi
             near.add(matrixNode[node.y + 1][node.x]);
         }
-        if (matrixNode[node.y - 1][node.x].num > 0) { // cung cot, ben tren
+        if (/*node.y > 2 &&*/ matrixNode[node.y - 1][node.x].num > 0) { // cung cot, ben tren
             near.add(matrixNode[node.y - 1][node.x]);
         }
     }
