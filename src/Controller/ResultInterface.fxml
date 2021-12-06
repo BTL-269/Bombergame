@@ -9,23 +9,23 @@
 <Pane fx:id="pane" prefHeight="680.0" prefWidth="1000.0" styleClass="result" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Result">
    <children>
       <ImageView fx:id="resultImage" fitHeight="152.0" fitWidth="700.0" layoutX="150.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="scoreLabel" layoutX="411.0" layoutY="371.0" prefHeight="60.0" prefWidth="260.0">
+      <Label fx:id="scoreLabel" alignment="CENTER" layoutX="370.0" layoutY="286.0" prefHeight="60.0" prefWidth="260.0" textAlignment="CENTER">
          <font>
-            <Font name="Cambria Bold" size="28.0" />
+            <Font name="Rockwell" size="36.0" />
          </font>
       </Label>
-      <Button layoutX="129.0" layoutY="567.0" mnemonicParsing="false" onAction="#clickBack" prefHeight="55.0" prefWidth="170.0" stylesheets="@style.css" text="Back" textFill="WHITE">
+      <Button layoutX="253.0" layoutY="437.0" mnemonicParsing="false" onAction="#clickBack" prefHeight="55.0" prefWidth="170.0" stylesheets="@style.css" text="Back" textFill="WHITE">
          <font>
-            <Font name="Cambria Bold" size="24.0" />
+            <Font name="OCR A Extended" size="36.0" />
          </font>
          <styleClass>
             <String fx:value="button-menu" />
             <String fx:value="selected" />
          </styleClass>
       </Button>
-      <Button fx:id="resultButton" layoutX="692.0" layoutY="567.0" mnemonicParsing="false" onAction="#clickResult" prefHeight="55.0" prefWidth="170.0" stylesheets="@style.css" textFill="WHITE">
+      <Button fx:id="resultButton" layoutX="569.0" layoutY="437.0" mnemonicParsing="false" onAction="#clickResult" prefHeight="62.0" prefWidth="160.0" stylesheets="@style.css" textFill="WHITE">
          <font>
-            <Font name="Cambria Bold" size="20.0" />
+            <Font name="OCR A Extended" size="36.0" />
          </font>
          <styleClass>
             <String fx:value="button-menu" />

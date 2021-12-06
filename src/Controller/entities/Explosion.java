@@ -23,10 +23,6 @@ public class Explosion extends Entity {
         this.type = type;
     }
 
-    public boolean isPowerUp() {
-        return powerUp;
-    }
-
     public void setPowerUp(boolean powerUp) {
         this.powerUp = powerUp;
     }
@@ -46,6 +42,7 @@ public class Explosion extends Entity {
                 }
                 check = false;
                 img = null;
+                _animate = 0;
             }
         }
     }

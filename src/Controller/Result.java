@@ -32,7 +32,7 @@ public class Result implements Initializable {
     @FXML
     void clickBack(ActionEvent event) {
         try {
-            URL url = InstructionGame.class.getResource("MenuInterface.fxml");
+            URL url = InstructionGame.class.getResource("Menu.fxml");
             if (url == null) {
                 throw new FileNotFoundException("File not found!");
             }
@@ -64,13 +64,13 @@ public class Result implements Initializable {
         String s = "";
         if (Bomber.lose == true) {
             s = "images/gameOver.png";
-            resultButton.setText("Play Again");
+            resultButton.setText("Again");
         } else {
             s = "images/levelUp.png";
-            resultButton.setText("Next Level");
+            resultButton.setText("Next");
         }
         Image img = new Image(getClass().getResourceAsStream(s));
         resultImage.setImage(img);
-        scoreLabel.setText("Score  " + MainGame.playScore);
+        scoreLabel.setText("Score: " + MainGame.playScore);
     }
 }

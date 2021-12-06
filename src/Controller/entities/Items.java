@@ -1,5 +1,6 @@
 package Controller.entities;
 
+import Controller.BombermanGame;
 import Controller.graphics.Sprite;
 import javafx.scene.image.Image;
 
@@ -7,11 +8,11 @@ public class Items extends Entity {
     private long sTime;
     private char symbol;
     private boolean show = false;
+    private boolean isEat = false;
 
     public Items(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
         symbol = map[yUnit][xUnit];
-        System.out.println("symbol " + symbol + " " + map[yUnit][xUnit]);
     }
 
     @Override
@@ -53,6 +54,12 @@ public class Items extends Entity {
             }
         }
         if (map[yUnit][xUnit] == ' ') {
+            if (!isEat) {
+                if (BombermanGame.playAudio % 2 == 0) {
+                    BombermanGame.soundEatItem.play();
+                }
+                isEat = true;
+            }
             img = null;
         }
     }

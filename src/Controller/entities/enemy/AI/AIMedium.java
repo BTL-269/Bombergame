@@ -63,7 +63,7 @@ public class AIMedium extends Enemy {
             A_star(matrixNode[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE], matrixNode[b.getYUnit()][b.getXUnit()]);
         }
         int i = path.size() - 1;
-        if (i == 1) return -1;
+        if (i == 0) return -1;
         if (path.get(i).x == path.get(i - 1).x) {
             if (path.get(i).y < path.get(i - 1).y) { // down
                 direction = 2;

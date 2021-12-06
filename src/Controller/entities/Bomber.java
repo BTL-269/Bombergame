@@ -1,5 +1,6 @@
 package Controller.entities;
 
+import Controller.BombermanGame;
 import Controller.MainGame;
 import Controller.MenuGame;
 import Controller.graphics.Sprite;
@@ -32,13 +33,12 @@ public class Bomber extends Entity {
         isWin();
         isAlive();
         if (!alive) {
-            if (System.currentTimeMillis() - bomb1.timeStart > 4000) {
-                if (System.currentTimeMillis() - timeDie < 1000) {
-                    die();
-                } else {
-                    restart();
-                }
+            if (System.currentTimeMillis() - timeDie < 1000) {
+                die();
+            } else {
+                restart();
             }
+
         }
         if (sprite != null) {
             img = sprite.getFxImage();
@@ -77,6 +77,7 @@ public class Bomber extends Entity {
                     bomb2.timeStart = System.currentTimeMillis();
                     bomb2.check = true;
                     type = 4;
+                    System.out.println("Bomb2");
                 }
             }
         }
@@ -159,41 +160,45 @@ public class Bomber extends Entity {
     }
 
     public void isAlive() {
-        int x_ = (this.x + 30) / Sprite.DEFAULT_SIZE;
-        int y_ = (this.y + 30) / Sprite.DEFAULT_SIZE;
-        int x = this.x / Sprite.DEFAULT_SIZE;
-        int y = this.y / Sprite.DEFAULT_SIZE;
-        /** EDIT */
+        int x_ = (this.x + 15) / Sprite.DEFAULT_SIZE;
+        int y_ = (this.y + 15) / Sprite.DEFAULT_SIZE;
         if (alive) {
-            if (map[y][x] == '-' || map[y][x_] == '-' || map[y_][x] == '-' || map[y_][x_] == '-'
-                    || (map[y][x] >= '1' && map[y][x] <= '5')
-                    || (map[y_][x] >= '1' && map[y_][x] <= '5')
-                    || (map[y][x_] >= '1' && map[y][x_] <= '5')
-                    || (map[y_][x_] >= '1' && map[y_][x_] <= '5')) {
+            if (map[y_][x_] == '-' || (map[y_][x_] >= '1' && map[y_][x_] <= '5')) {
                 timeDie = System.currentTimeMillis();
+                if (BombermanGame.playAudio % 2 == 0) {
+                    BombermanGame.soundDead.play();
+                }
                 alive = false;
             }
         }
     }
 
     public void die() {
-        sprite = Sprite.movingSprite(Sprite.player_down, Sprite.grass, _animate, 60);
+        sprite = Sprite.movingSprite(Sprite.player_down, Sprite.spriteNull, _animate, 60);
     }
 
     public void restart() {
         if (MainGame.soul > 1) {
             MainGame.soul--;
-            xUnit = 1;
-            yUnit = 1;
-            x = xUnit * Sprite.DEFAULT_SIZE;
-            y = yUnit * Sprite.DEFAULT_SIZE;
-            sprite = Sprite.player_right;
-            map[bomb1.yUnit][bomb1.xUnit] = ' ';
-            bomb1.check = false;
+            reset();
             alive = true;
         } else {
             lose = true;
+            step = 4;
+            bombItem = false;
+            bomb1.setPowerUp(false);
+            bomb2.setPowerUp(false);
         }
+    }
+
+    public void reset(){
+        xUnit = 1;
+        yUnit = 1;
+        x = xUnit * Sprite.DEFAULT_SIZE;
+        y = yUnit * Sprite.DEFAULT_SIZE;
+        sprite = Sprite.player_right;
+        map[bomb1.yUnit][bomb1.xUnit] = ' ';
+        bomb1.check = false;
     }
 
     public void isWin() {
@@ -201,6 +206,10 @@ public class Bomber extends Entity {
         int y_ = (y + 15) / Sprite.DEFAULT_SIZE;
         if (map[y_][x_] == 'X' && MainGame.numberEnemies == 0) {
             win = true;
+            if (BombermanGame.playAudio % 2 == 0) {
+                BombermanGame.soundWin.play();
+            }
+            reset();
         }
     }
 

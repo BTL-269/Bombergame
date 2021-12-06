@@ -21,7 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaPlayer;
 
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -86,30 +86,59 @@ public class MainGame implements Initializable {
         heart.setText(String.valueOf(soul));
         time.setText(String.valueOf(300 - (System.currentTimeMillis() - playTime) / 1000));
         score.setText(String.valueOf(playScore));
+        readHighScore();
         highScore.setText(String.valueOf(bestMark));
+    }
+
+    public void readHighScore() {
+        try {
+            FileReader reader = new FileReader("res/HighScore");
+            BufferedReader buffer = new BufferedReader(reader);
+            bestMark = buffer.read();
+            buffer.close();
+            reader.close();
+        }  catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void writeHighScore() {
+        try {
+            FileWriter writer = new FileWriter("res/HighScore");
+            BufferedWriter buffer = new BufferedWriter(writer);
+            buffer.write(bestMark);
+            buffer.close();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void restart() {
         if (playScore > bestMark) {
             bestMark = playScore;
+            writeHighScore();
         }
         if (Bomber.lose) {
             playScore = 0;
+            level = 1;
+            soul = 3;
         } else if (Bomber.win) {
             level++;
         }
         Bomber.lose = false;
         Bomber.win = false;
-        MainGame.soul = 3;
     }
 
     @FXML
     void clickBack(MouseEvent event) {
         try {
-            URL url = SettingGame.class.getResource("MenuInterface.fxml");
+            URL url = SettingGame.class.getResource("Menu.fxml");
             if (url == null) {
                 throw new FileNotFoundException("File is not found!");
             }
+            timer.stop();
+            level = 1;
             mainPane.getChildren().add(new FXMLLoader().load(url));
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,7 +147,7 @@ public class MainGame implements Initializable {
 
     @FXML
     void clickPause(MouseEvent event) {
-        isPause ++;
+        isPause++;
         if (isPause % 2 == 1) {
             MainGame.timer.stop();
             Image img = new Image(getClass().getResourceAsStream("images/pause.png"));
@@ -167,14 +196,14 @@ public class MainGame implements Initializable {
             Image img = new Image(getClass().getResourceAsStream("images/speaker_pause.png"));
             imgRadio.setImage(img);
         }
-
+        bomberman.reset();
         timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
                 render();
                 update();
                 setDetail();
-                if ((Bomber.win == true || Bomber.lose == true) || (300 - (System.currentTimeMillis() - playTime) / 1000) < 0) {
+                if ((Bomber.win || Bomber.lose) || (300 - (System.currentTimeMillis() - playTime) / 1000) < 0) {
                     if ((300 - (System.currentTimeMillis() - playTime) / 1000) < 0) {
                         Bomber.lose = true;
                     }

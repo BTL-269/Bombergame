@@ -290,6 +290,7 @@ public class Sprite {
 	public static Sprite grass;
 	public static Sprite brick;
 	public static Sprite wall;
+	public static Sprite spriteNull = new Sprite(DEFAULT_SIZE, 0, 13, SpriteSheet.tiles, 32, 32);
 
 	public Sprite(int size, int x, int y, SpriteSheet sheet, int rw, int rh) {
 		SIZE = size;

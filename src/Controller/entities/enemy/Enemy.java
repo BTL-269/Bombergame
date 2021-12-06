@@ -1,5 +1,6 @@
 package Controller.entities.enemy;
 
+import Controller.BombermanGame;
 import Controller.MainGame;
 import Controller.entities.Entity;
 import Controller.entities.Text;
@@ -19,11 +20,10 @@ public abstract class Enemy extends Entity {
     protected int direction;
     protected char enemy;
     protected Sprite[] sprites;
-    protected static final int MAX_STEPS = Sprite.DEFAULT_SIZE / SPEED;
-    protected int step = 0;
 
     public Enemy(int xUnit, int yUnit, Image img, char e) {
         super(xUnit, yUnit, img);
+        MainGame.numberEnemies++;
         sprites = Sprite.setEnemy(e);
         sprite = sprites[0];
         enemy = e;
@@ -39,6 +39,11 @@ public abstract class Enemy extends Entity {
 
         if (c == '-') {
             die = true;
+            MainGame.numberEnemies--;
+            MainGame.playScore += mark;
+            if (BombermanGame.playAudio % 2 == 0) {
+                BombermanGame.soundMonsterDead.play();
+            }
             return false;
         }
 
@@ -80,9 +85,9 @@ public abstract class Enemy extends Entity {
                 direction = findDirection();
             }
         } else {
-            //System.out.println("4 : " + direction);
             if (canMove(_x, _y)) {
-                if (map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] == '4') {
+                if (map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] == '4'
+                        && map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] != '-') {
                     map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] = ' ';
                 }
                 if (map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] == ' ') {
@@ -111,8 +116,7 @@ public abstract class Enemy extends Entity {
     }
 
     public void afterDie() {
-        MainGame.numberEnemies--;
-        sprite = Sprite.movingSprite(sprites[6], Sprite.grass, _animate, 30);
+        sprite = Sprite.movingSprite(sprites[6], Sprite.spriteNull, _animate, 30);
         if (finalAnimation > 0) --finalAnimation;
         else isRemove = true;
         map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] = ' ';

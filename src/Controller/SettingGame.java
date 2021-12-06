@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -18,54 +19,67 @@ public class SettingGame {
 
     @FXML
     private Pane paneNext;
+    @FXML
+    private Rectangle recMap;
+    @FXML
+    private Rectangle recPlayer;
 
     @FXML
     void clickMap1(MouseEvent event) {
         typeMap = 1;
+        recMap.setLayoutX(125);
     }
 
     @FXML
     void clickMap2(MouseEvent event) {
         typeMap = 2;
+        recMap.setLayoutX(322);
     }
 
     @FXML
     void clickMap3(MouseEvent event) {
         typeMap = 3;
+        recMap.setLayoutX(518);
     }
 
     @FXML
     void clickMap4(MouseEvent event) {
         typeMap = 4;
+        recMap.setLayoutX(710);
     }
 
     @FXML
     void clickOran(MouseEvent event) {
         player = 1;
+        recPlayer.setLayoutX(140);
         bomberman = new Bomber(1, 1, Sprite.child_right.getFxImage());
     }
 
     @FXML
     void clickMaria(MouseEvent event) {
         player = 2;
+        recPlayer.setLayoutX(298);
         bomberman = new Bomber(1, 1, Sprite.girl_right.getFxImage());
     }
 
     @FXML
     void clickTomy(MouseEvent event) {
         player = 3;
+        recPlayer.setLayoutX(452);
         bomberman = new Bomber(1, 1, Sprite.boy_right.getFxImage());
     }
 
     @FXML
     void clickNick(MouseEvent event) {
         player = 4;
+        recPlayer.setLayoutX(606);
         bomberman = new Bomber(1, 1, Sprite.gamer_right.getFxImage());
     }
 
     @FXML
     void clickWinny(MouseEvent event) {
         player = 5;
+        recPlayer.setLayoutX(753);
         bomberman = new Bomber(1, 1, Sprite.play_right.getFxImage());
     }
 
@@ -87,7 +101,7 @@ public class SettingGame {
     @FXML
     void clickBack(ActionEvent event) {
         try {
-            URL url = SettingGame.class.getResource("MenuInterface.fxml");
+            URL url = SettingGame.class.getResource("Menu.fxml");
             if (url == null) {
                 throw new FileNotFoundException("File is not found!");
             }

@@ -18,7 +18,7 @@ public class InstructionGame {
     @FXML
     void clickBack(ActionEvent event) {
         try {
-            URL url = InstructionGame.class.getResource("MenuInterface.fxml");
+            URL url = InstructionGame.class.getResource("Menu.fxml");
             if (url == null) {
                 throw new FileNotFoundException("File not found!");
             }

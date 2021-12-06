@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 public class Brick extends Entity {
 
     public long sTime;
+    private boolean show = false;
 
     public Brick(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
@@ -13,13 +14,14 @@ public class Brick extends Entity {
 
     @Override
     public void update() {
-        if (isCollide()) {
+        if (isCollide() && !show) {
             if (System.currentTimeMillis() - sTime < 1000) {
                 set_animate(1000);
                 broken();
                 img = sprite.getFxImage();
             } else {
                 map[yUnit][xUnit] = ' ';
+                show = true;
                 img = null;
             }
         }

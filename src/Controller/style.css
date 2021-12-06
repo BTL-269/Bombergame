@@ -2,10 +2,22 @@
     -fx-background-image: url("images/menu.png");
 }
 .selected:hover {
-    -fx-background-color: #3b3b41;
+    -fx-background-color: #103667;
+
+}
+.selected1:hover {
+    -fx-background-color: #3366ff;
+    -fx-background-color: #1C86EE;
+}
+.selectedMap:hover {
+    -fx-background-color: #00688B;
 }
 .button-menu {
-    -fx-background-color: #083167;
+    -fx-background-color: #205AA7;
+    -fx-background-radius: 30;
+}
+.button-menu1 {
+    -fx-background-color: #44a8fe;
     -fx-background-radius: 30;
 }
 .transparent {

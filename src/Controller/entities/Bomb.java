@@ -1,7 +1,11 @@
 package Controller.entities;
 
+import Controller.BombermanGame;
+import Controller.MainGame;
 import Controller.graphics.Sprite;
 import javafx.scene.image.Image;
+import sun.applet.Main;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +56,6 @@ public class Bomb extends Entity {
                 img = sprite.getFxImage();
             } else {
                 check = false;
-                //map[yUnit][xUnit] = ' ';
                 img = null;
                 for (Explosion explosion : explosions) {
                     if (powerUp == true) {
@@ -63,12 +66,21 @@ public class Bomb extends Entity {
                         explosion.setCheck(true);
                     }
                 }
+                if (BombermanGame.playAudio % 2 == 0) {
+                    BombermanGame.soundExplosion.play();
+                }
             }
+        } else {
+            sprite = Sprite.spriteNull;
+            img = sprite.getFxImage();
         }
     }
 
     public void setPowerUp(boolean powerUp) {
         this.powerUp = powerUp;
+        for (Explosion e : explosions) {
+            e.setPowerUp(false);
+        }
     }
 
     public boolean isCheck() {
