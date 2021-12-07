@@ -11,8 +11,11 @@ public class AILow extends Enemy {
     }
 
     @Override
-    public int findDirection() {
-        return rd.nextInt(4);
+    public void moveEnemy() {
+        if (!move()) {
+            direction = rd.nextInt(4);
+        }
     }
+
 }
 

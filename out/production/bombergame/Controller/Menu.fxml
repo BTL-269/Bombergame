@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1000.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuGame">
+   <children>
+      <Button layoutX="331.0" layoutY="371.0" mnemonicParsing="false" onAction="#clickStart" prefHeight="60.0" prefWidth="300.0" stylesheets="@style.css" textFill="#f0740c">
+         <font>
+            <Font name="Cambria Bold" size="28.0" />
+         </font>
+         <styleClass>
+            <String fx:value="button-menu1" />
+            <String fx:value="selected1" />
+         </styleClass>
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/start.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="331.0" layoutY="446.0" mnemonicParsing="false" onAction="#clickInstruction" prefHeight="60.0" prefWidth="300.0" stylesheets="@style.css" textFill="#f0740c">
+         <font>
+            <Font name="Cambria Bold" size="28.0" />
+         </font>
+         <styleClass>
+            <String fx:value="button-menu1" />
+            <String fx:value="selected1" />
+         </styleClass>
+         <graphic>
+            <ImageView fitHeight="100.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/howToPlay.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane layoutX="48.0" layoutY="577.0" prefHeight="75.0" prefWidth="75.0">
+         <children>
+            <ImageView fx:id="imgRadio" fitHeight="60.0" fitWidth="60.0" layoutX="8.0" layoutY="8.0" onMouseClicked="#clickSpeaker" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/radio.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</Pane>

@@ -29,7 +29,39 @@ public abstract class Enemy extends Entity {
         enemy = e;
     }
 
-    public abstract int findDirection();
+    public abstract void moveEnemy();
+
+    public boolean move() {
+        boolean ans = false;
+        int _x = x;
+        int _y = y;
+
+        if (!die) {
+            if (direction == 0) _x += SPEED;  // right
+            if (direction == 1) _x -= SPEED;  // left
+            if (direction == 2) _y += SPEED;  // down
+            if (direction == 3) _y -= SPEED;  // up
+            chooseSprite(direction);
+
+            if (canMove(_x, _y)) {
+                ans = true;
+                if (enemy == '4' || enemy == '5') {
+                    if (map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] == enemy) {
+                        map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] = ' ';
+                    }
+                    if (map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] == ' ') {
+                        map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] = enemy;
+                    }
+                } else {
+                    map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] = ' ';
+                    map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] = enemy;
+                }
+                x = _x;
+                y = _y;
+            }
+        }
+        return ans;
+    }
 
     public boolean canMove(int x, int y) {
         if (direction == 0) x += Sprite.DEFAULT_SIZE - SPEED;
@@ -47,8 +79,8 @@ public abstract class Enemy extends Entity {
             return false;
         }
 
-        if (enemy == '4' || enemy == '5') {
-            return c != '#';
+        if (enemy == '5' || enemy == '4') {
+            return c != '#' && c != '+';
         }
 
         if (direction == 0 || direction == 2) {
@@ -58,48 +90,6 @@ public abstract class Enemy extends Entity {
             return c == ' ' || (c >= '1' && c <= '5');
         }
         return false;
-    }
-
-    public void moveEnemy() {
-        int _x = x;
-        int _y = y;
-
-        if (die) {
-            afterDie();
-            return;
-        }
-
-        if (direction == 0) _x += SPEED;  // right
-        if (direction == 1) _x -= SPEED;  // left
-        if (direction == 2) _y += SPEED;  // down
-        if (direction == 3) _y -= SPEED;  // up
-        chooseSprite(direction);
-
-        if (enemy == '1' || enemy == '2' || enemy == '3') {
-            if (canMove(_x, _y)) {
-                map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] = ' ';
-                x = _x;
-                y = _y;
-                map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] = enemy;
-            } else {
-                direction = findDirection();
-            }
-        } else {
-            if (canMove(_x, _y)) {
-                if (map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] == '4'
-                        && map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] != '-') {
-                    map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] = ' ';
-                }
-                if (map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] == ' ') {
-                    map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] = '4';
-                }
-                x = _x;
-                y = _y;
-                direction = findDirection();
-            } else {
-                direction = findDirection();
-            }
-        }
     }
 
     public void chooseSprite(int a) {
@@ -128,10 +118,14 @@ public abstract class Enemy extends Entity {
 
     @Override
     public void update() {
+        if (die) {
+            afterDie();
+        } else {
+            moveEnemy();
+        }
         set_animate(2000);
         if (!isRemove) img = sprite.getFxImage();
         else img = null;
-        moveEnemy();
     }
 }
 

@@ -123,16 +123,16 @@ public class Bomber extends Entity {
         x = x / Sprite.DEFAULT_SIZE;
         y = (y + 3) / Sprite.DEFAULT_SIZE;
         if ((map[y][x] == ' ' || (map[y][x] >= '1' && map[y][x] <= '5') || map[y][x] == '-'
-                || (map[y][x] == 'X' && MainGame.numberEnemies == 0)
+                || (map[y][x] == 'X' && MainGame.numberEnemies <= 0)
                 || map[y][x] == 'D' || map[y][x] == 'B' || map[y][x] == 'S' || map[y][x] == 'F')
                 && (map[y][x_] == ' ' || (map[y][x_] >= '1' && map[y][x_] <= '5') || map[y][x_] == '-'
-                || (map[y][x_] == 'X' && MainGame.numberEnemies == 0)
+                || (map[y][x_] == 'X' && MainGame.numberEnemies <= 0)
                 || map[y][x_] == 'D' || map[y][x_] == 'B' || map[y][x_] == 'S' || map[y][x_] == 'F')
                 && (map[y_][x] == ' ' || (map[y_][x] >= '1' && map[y_][x] <= '5') || map[y_][x] == '-'
-                || (map[y_][x] == 'X' && MainGame.numberEnemies == 0)
+                || (map[y_][x] == 'X' && MainGame.numberEnemies <= 0)
                 || map[y_][x] == 'D' || map[y_][x] == 'B' || map[y_][x] == 'S' || map[y_][x] == 'F')
                 && (map[y_][x_] == ' ' || (map[y_][x_] >= '1' && map[y_][x_] <= '5') || map[y_][x_] == '-'
-                || (map[y_][x_] == 'X' && MainGame.numberEnemies == 0)
+                || (map[y_][x_] == 'X' && MainGame.numberEnemies <= 0)
                 || map[y_][x_] == 'D' || map[y_][x_] == 'B' || map[y_][x_] == 'S' || map[y_][x_] == 'F')) {
             return true;
         }
@@ -198,13 +198,13 @@ public class Bomber extends Entity {
         y = yUnit * Sprite.DEFAULT_SIZE;
         sprite = Sprite.player_right;
         map[bomb1.yUnit][bomb1.xUnit] = ' ';
-        bomb1.check = false;
+        //bomb1.check = false;
     }
 
     public void isWin() {
         int x_ = (x + 12) / Sprite.DEFAULT_SIZE;
         int y_ = (y + 15) / Sprite.DEFAULT_SIZE;
-        if (map[y_][x_] == 'X' && MainGame.numberEnemies == 0) {
+        if (map[y_][x_] == 'X' && MainGame.numberEnemies <= 0) {
             win = true;
             if (BombermanGame.playAudio % 2 == 0) {
                 BombermanGame.soundWin.play();

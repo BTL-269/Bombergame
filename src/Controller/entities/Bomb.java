@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Bomb extends Entity {
 
-    public static long timeStart;  // thời gian bomb bắt đầu được đặt
+    public long timeStart;  // thời gian bomb bắt đầu được đặt
     public boolean check = false; // kiểm tra bomb đã được đặt chưa.
     public List<Explosion> explosions = new ArrayList<>();
 

@@ -46,8 +46,9 @@ class Node {
 public class AIMedium extends Enemy {
 
     private final Bomber b = SettingGame.bomberman;
-    public Node[][] matrixNode = new Node[MainGame.HEIGHT][MainGame.WIDTH]; // ma tran cac Node
-    public List<Node> path = new ArrayList<>(); // đường đi ngắn nhất
+    private Node[][] matrixNode = new Node[MainGame.HEIGHT][MainGame.WIDTH]; // ma tran cac Node
+    private List<Node> path = new ArrayList<>(); // đường đi ngắn nhất
+    public boolean hasPath = true;
 
     public AIMedium(int xUnit, int yUnit, Image img, char e) {
         super(xUnit, yUnit, img, e);
@@ -55,6 +56,19 @@ public class AIMedium extends Enemy {
     }
 
     @Override
+    public void moveEnemy() {
+        if (findDirection() == -1) {
+            System.out.println("k co duong: " + direction);
+            if (!move()) {
+                direction = rd.nextInt(4);
+            }
+        } else {
+            System.out.println("co duong: " + direction);
+            move();
+            direction = findDirection();
+        }
+    }
+
     public int findDirection() {
         createMatrixNode();
         if (direction == 1 || direction == 3) {
@@ -62,8 +76,13 @@ public class AIMedium extends Enemy {
         } else {
             A_star(matrixNode[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE], matrixNode[b.getYUnit()][b.getXUnit()]);
         }
+        if (!hasPath) return -1;
         int i = path.size() - 1;
-        if (i == 0) return -1;
+        if (i <= 1) return -1;
+        if ((b.bomb1.check && path.contains(matrixNode[b.bomb1.getYUnit()][b.bomb1.getXUnit()]))
+                || (b.bomb2.check && path.contains(matrixNode[b.bomb2.getYUnit()][b.bomb2.getXUnit()]))) {
+            return -1;
+        }
         if (path.get(i).x == path.get(i - 1).x) {
             if (path.get(i).y < path.get(i - 1).y) { // down
                 direction = 2;
@@ -86,10 +105,19 @@ public class AIMedium extends Enemy {
     public void createMatrixNode() {
         for (int i = 0; i < MainGame.HEIGHT; i++) {
             for (int j = 0; j < MainGame.WIDTH; j++) {
-                if (map[i][j] == '#' || map[i][j] == '+' || map[i][j] == '-') {
-                    matrixNode[i][j] = new Node(0, i, j);
+                if (enemy == '2') {
+                    if (map[i][j] == '#' || map[i][j] == '*' || map[i][j] == 'x' || map[i][j] == 'b'
+                            || map[i][j] == 'f' || map[i][j] == 's' || map[i][j] == 'd') {
+                        matrixNode[i][j] = new Node(0, i, j);
+                    } else {
+                        matrixNode[i][j] = new Node(1, i, j);
+                    }
                 } else {
-                    matrixNode[i][j] = new Node(1, i, j);
+                    if (map[i][j] == '#') {
+                        matrixNode[i][j] = new Node(0, i, j);
+                    } else {
+                        matrixNode[i][j] = new Node(1, i, j);
+                    }
                 }
             }
         }
@@ -98,16 +126,16 @@ public class AIMedium extends Enemy {
     // list node ke voi node dang xet
     public void setNearList(Node node, List<Node> near) {
         near.clear();
-        if (/*node.x < MainGame.WIDTH - 1 && */matrixNode[node.y][node.x + 1].num > 0) { // cung hang, ben phai
+        if (node.x < MainGame.WIDTH - 1 && matrixNode[node.y][node.x + 1].num > 0) { // cung hang, ben phai
             near.add(matrixNode[node.y][node.x + 1]);
         }
-        if (/*node. x > 1 && */matrixNode[node.y][node.x - 1].num > 0) { // cung hang, ben trai
+        if (node. x > 1 && matrixNode[node.y][node.x - 1].num > 0) { // cung hang, ben trai
             near.add(matrixNode[node.y][node.x - 1]);
         }
-        if (/*node.y < MainGame.HEIGHT - 1 && */matrixNode[node.y + 1][node.x].num > 0) { // cung cot, ben duoi
+        if (node.y < MainGame.HEIGHT - 1 && matrixNode[node.y + 1][node.x].num > 0) { // cung cot, ben duoi
             near.add(matrixNode[node.y + 1][node.x]);
         }
-        if (/*node.y > 2 &&*/ matrixNode[node.y - 1][node.x].num > 0) { // cung cot, ben tren
+        if (node.y > 1 && matrixNode[node.y - 1][node.x].num > 0) { // cung cot, ben tren
             near.add(matrixNode[node.y - 1][node.x]);
         }
     }
@@ -123,6 +151,7 @@ public class AIMedium extends Enemy {
     }
 
     public void A_star(Node start, Node end) {
+        hasPath = true;
         if (start.equal(end)) return;
 
         List<Node> openList = new ArrayList<>();
@@ -162,5 +191,6 @@ public class AIMedium extends Enemy {
                 }
             }
         } while (!openList.isEmpty());
+        if (path.isEmpty()) hasPath = false;
     }
 }

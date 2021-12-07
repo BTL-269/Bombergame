@@ -29,15 +29,15 @@ public class Explosion extends Entity {
 
     @Override
     public void update() {
-        if (isExplosion() && check == true) {
+        if (isExplosion() && check) {
             if (System.currentTimeMillis() - timeStart < 1000) {
                 set_animate(1000);
                 chooseSprite();
                 img = sprite.getFxImage();
                 map[yUnit][xUnit] = '-';
             } else {
-                if (map[yUnit][xUnit] != 'D' && map[yUnit][xUnit] != 'B' && map[yUnit][xUnit] != 'S'
-                        && map[yUnit][xUnit] != 'F' && map[yUnit][xUnit] != 'X') {
+                if (map[yUnit][xUnit] != 'D' || map[yUnit][xUnit] != 'B' || map[yUnit][xUnit] != 'S'
+                        || map[yUnit][xUnit] != 'F' || map[yUnit][xUnit] != 'X') {
                     map[yUnit][xUnit] = ' ';
                 }
                 check = false;

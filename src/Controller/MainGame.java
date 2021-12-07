@@ -122,7 +122,7 @@ public class MainGame implements Initializable {
         if (Bomber.lose) {
             playScore = 0;
             level = 1;
-            soul = 3;
+            soul = 4;
         } else if (Bomber.win) {
             level++;
         }

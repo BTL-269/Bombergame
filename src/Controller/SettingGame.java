@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import sun.applet.Main;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -86,6 +87,7 @@ public class SettingGame {
     @FXML
     void clickPlay(ActionEvent event) {
         MainGame.restart();
+        MainGame.soul = 3;
         try {
             URL url = SettingGame.class.getResource("MainInterface.fxml");
             if (url == null) {

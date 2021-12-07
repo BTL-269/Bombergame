@@ -45,7 +45,6 @@ public class Result implements Initializable {
     @FXML
     void clickResult(ActionEvent event) {
         MainGame.restart();
-        MainGame.soul = 4;
         try {
             URL url = SettingGame.class.getResource("MainInterface.fxml");
             if (url == null) {

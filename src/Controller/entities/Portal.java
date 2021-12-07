@@ -31,28 +31,28 @@ public class Portal extends Entity {
     public boolean isCollide() {
         for (int i = 0; i < 5; i++) {
             if ((xUnit == Bomber.bomb1.explosions.get(i).xUnit && yUnit == Bomber.bomb1.explosions.get(i).yUnit)
-                    && Bomber.bomb1.explosions.get(i).check == true) {
+                    && Bomber.bomb1.explosions.get(i).check) {
                 sTime = Bomber.bomb1.explosions.get(i).timeStart;
                 return true;
             }
         }
         for (int i = 5; i < 9; i++) {
             if (xUnit == Bomber.bomb1.explosions.get(i).xUnit && yUnit == Bomber.bomb1.explosions.get(i).yUnit
-                    && Bomber.bomb1.explosions.get(i).isExplosion() && Bomber.bomb1.explosions.get(i).check == true) {
+                    && Bomber.bomb1.explosions.get(i).isExplosion() && Bomber.bomb1.explosions.get(i).check) {
                 sTime = Bomber.bomb1.explosions.get(i).timeStart;
                 return true;
             }
         }
         for (int i = 0; i < 5; i++) {
             if (xUnit == Bomber.bomb2.explosions.get(i).xUnit && yUnit == Bomber.bomb2.explosions.get(i).yUnit
-                    && Bomber.bomb2.explosions.get(i).check == true) {
+                    && Bomber.bomb2.explosions.get(i).check) {
                 sTime = Bomber.bomb2.explosions.get(i).timeStart;
                 return true;
             }
         }
         for (int i = 5; i < 9; i++) {
             if (xUnit == Bomber.bomb2.explosions.get(i).xUnit && yUnit == Bomber.bomb2.explosions.get(i).yUnit
-                    && Bomber.bomb2.explosions.get(i).isExplosion() && Bomber.bomb2.explosions.get(i).check == true) {
+                    && Bomber.bomb2.explosions.get(i).isExplosion() && Bomber.bomb2.explosions.get(i).check) {
                 sTime = Bomber.bomb2.explosions.get(i).timeStart;
                 return true;
             }
