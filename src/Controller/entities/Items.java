@@ -1,13 +1,12 @@
 package Controller.entities;
 
 import Controller.BombermanGame;
+import Controller.SettingGame;
 import Controller.graphics.Sprite;
 import javafx.scene.image.Image;
 
-public class Items extends Entity {
-    private long sTime;
+public class Items extends Tiles {
     private char symbol;
-    private boolean show = false;
     private boolean isEat = false;
 
     public Items(int xUnit, int yUnit, Image img) {
@@ -23,38 +22,37 @@ public class Items extends Entity {
                 broken();
                 img = sprite.getFxImage();
             } else {
-                switch (symbol) {
-                    case 'd': {
-                        sprite = Sprite.powerup_detonator;
-                        map[yUnit][xUnit] = 'D';
-                    }
-                    break;
-                    case 'b': {
-                        sprite = Sprite.powerup_bombs;
-                        map[yUnit][xUnit] = 'B';
-                    }
-                    break;
-                    case 'f': {
-                        sprite = Sprite.powerup_flames;
-                        map[yUnit][xUnit] = 'F';
-                    }
-                    break;
-                    case 's': {
-                        sprite = Sprite.powerup_speed;
-                        map[yUnit][xUnit] = 'S';
-                    }
-                    break;
-                }
                 show = true;
-                if (sprite != null) {
-                    img = sprite.getFxImage();
-                } else {
-                    img = null;
-                }
             }
         }
-        if (map[yUnit][xUnit] == ' ') {
+        if (show && !isEat) {
+            switch (symbol) {
+                case 'd': {
+                    sprite = Sprite.powerup_detonator;
+                    map[yUnit][xUnit] = 'D';
+                }
+                break;
+                case 'b': {
+                    sprite = Sprite.powerup_bombs;
+                    map[yUnit][xUnit] = 'B';
+                }
+                break;
+                case 'f': {
+                    sprite = Sprite.powerup_flames;
+                    map[yUnit][xUnit] = 'F';
+                }
+                break;
+                case 's': {
+                    sprite = Sprite.powerup_speed;
+                    map[yUnit][xUnit] = 'S';
+                }
+                break;
+            }
+            img = sprite.getFxImage();
+        }
+        if (xUnit == SettingGame.bomberman.xUnit && yUnit == SettingGame.bomberman.yUnit) {
             if (!isEat) {
+                map[yUnit][xUnit] = ' ';
                 if (BombermanGame.playAudio % 2 == 0) {
                     BombermanGame.soundEatItem.play();
                 }
@@ -62,41 +60,5 @@ public class Items extends Entity {
             }
             img = null;
         }
-    }
-
-    public boolean isCollide() {
-        for (int i = 0; i < 5; i++) {
-            if ((xUnit == Bomber.bomb1.explosions.get(i).xUnit && yUnit == Bomber.bomb1.explosions.get(i).yUnit)
-                    && Bomber.bomb1.explosions.get(i).check) {
-                sTime = Bomber.bomb1.explosions.get(i).timeStart;
-                return true;
-            }
-        }
-        for (int i = 5; i < 9; i++) {
-            if (xUnit == Bomber.bomb1.explosions.get(i).xUnit && yUnit == Bomber.bomb1.explosions.get(i).yUnit
-                    && Bomber.bomb1.explosions.get(i).isExplosion() && Bomber.bomb1.explosions.get(i).check) {
-                sTime = Bomber.bomb1.explosions.get(i).timeStart;
-                return true;
-            }
-        }
-        for (int i = 0; i < 5; i++) {
-            if (xUnit == Bomber.bomb2.explosions.get(i).xUnit && yUnit == Bomber.bomb2.explosions.get(i).yUnit
-                    && Bomber.bomb2.explosions.get(i).check) {
-                sTime = Bomber.bomb2.explosions.get(i).timeStart;
-                return true;
-            }
-        }
-        for (int i = 5; i < 9; i++) {
-            if (xUnit == Bomber.bomb2.explosions.get(i).xUnit && yUnit == Bomber.bomb2.explosions.get(i).yUnit
-                    && Bomber.bomb2.explosions.get(i).isExplosion() && Bomber.bomb2.explosions.get(i).check) {
-                sTime = Bomber.bomb2.explosions.get(i).timeStart;
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void broken() {
-        sprite = Sprite.movingSprite(Sprite.brick_break, Sprite.brick_break1, Sprite.brick_break2, _animate, 80);
     }
 }

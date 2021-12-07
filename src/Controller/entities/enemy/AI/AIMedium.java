@@ -58,12 +58,10 @@ public class AIMedium extends Enemy {
     @Override
     public void moveEnemy() {
         if (findDirection() == -1) {
-            System.out.println("k co duong: " + direction);
             if (!move()) {
                 direction = rd.nextInt(4);
             }
         } else {
-            System.out.println("co duong: " + direction);
             move();
             direction = findDirection();
         }

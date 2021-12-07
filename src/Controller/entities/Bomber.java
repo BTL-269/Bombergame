@@ -16,8 +16,8 @@ public class Bomber extends Entity {
     private long timeDie;
     private int step = 4;
 
-    public boolean alive = true;
-    public boolean bombItem = false; // kiểm tra bomb item được ăn chưa
+    private boolean alive = true;
+    private boolean bombItem = false; // kiểm tra bomb item được ăn chưa
     public static boolean win = false; // kiểm tra đã thắng chưa, nếu thắng tăng level.
     public static boolean lose = false; // kiểm tra player đã thua chưa.
 
@@ -77,7 +77,6 @@ public class Bomber extends Entity {
                     bomb2.timeStart = System.currentTimeMillis();
                     bomb2.check = true;
                     type = 4;
-                    System.out.println("Bomb2");
                 }
             }
         }
