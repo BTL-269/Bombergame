@@ -51,9 +51,6 @@ public class Board {
                     case '#':
                         object = new Wall(j, i, Sprite.wall.getFxImage());
                         break;
-                    case 'x':
-                        entities.add(new Portal(j, i, Sprite.brick.getFxImage()));
-                        break;
                     case '1':
                         entities.add(new Balloon(j, i, Sprite.balloom_left1.getFxImage()));
                         break;
@@ -68,6 +65,9 @@ public class Board {
                         break;
                     case '5':
                         entities.add(new Kondoria(j, i, Sprite.kondoria_left1.getFxImage()));
+                        break;
+                    case 'x':
+                        entities.add(new Portal(j, i, Sprite.brick.getFxImage()));
                         break;
                     case '*':
                         entities.add(new Brick(j, i, Sprite.brick.getFxImage()));

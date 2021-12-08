@@ -73,8 +73,8 @@
             <String fx:value="selected" />
          </styleClass>
       </Button>
-      <Rectangle fx:id="recMap" arcHeight="5.0" arcWidth="5.0" fill="#ffff0000" height="153.0" layoutX="125.0" layoutY="165.0" stroke="#00688b" strokeType="INSIDE" strokeWidth="8.0" width="156.0" />
-      <Rectangle fx:id="recPlayer" arcHeight="5.0" arcWidth="5.0" fill="#00678a00" height="120.0" layoutX="140.0" layoutY="391.0" stroke="#00688b" strokeType="INSIDE" strokeWidth="8.0" width="104.0" />
+      <Rectangle fx:id="recMap" arcHeight="5.0" arcWidth="5.0" fill="#ffff0000" height="152.0" layoutX="127.0" layoutY="165.0" stroke="#00688b" strokeType="INSIDE" strokeWidth="7.0" width="152.0" />
+      <Rectangle fx:id="recPlayer" arcHeight="5.0" arcWidth="5.0" fill="#00678a00" height="120.0" layoutX="139.0" layoutY="391.0" stroke="#00688b" strokeType="INSIDE" strokeWidth="7.0" width="105.0" />
       <Pane layoutX="149.0" layoutY="401.0" prefHeight="100.0" prefWidth="85.0" styleClass="selectedMap">
          <children>
             <ImageView fitHeight="90.0" fitWidth="75.0" layoutX="5.0" layoutY="5.0" onMouseClicked="#clickOran" pickOnBounds="true" preserveRatio="true">

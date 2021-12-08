@@ -36,29 +36,27 @@ public abstract class Enemy extends Entity {
         int _x = x;
         int _y = y;
 
-        if (!die) {
-            if (direction == 0) _x += SPEED;  // right
-            if (direction == 1) _x -= SPEED;  // left
-            if (direction == 2) _y += SPEED;  // down
-            if (direction == 3) _y -= SPEED;  // up
-            chooseSprite(direction);
+        if (direction == 0) _x += SPEED;  // right
+        if (direction == 1) _x -= SPEED;  // left
+        if (direction == 2) _y += SPEED;  // down
+        if (direction == 3) _y -= SPEED;  // up
+        chooseSprite(direction);
 
-            if (canMove(_x, _y)) {
-                ans = true;
-                if (enemy == '4' || enemy == '5') {
-                    if (map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] == enemy) {
-                        map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] = ' ';
-                    }
-                    if (map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] == ' ') {
-                        map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] = enemy;
-                    }
-                } else {
+        if (canMove(_x, _y)) {
+            ans = true;
+            if (enemy == '4' || enemy == '5') {
+                if (map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] == enemy) {
                     map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] = ' ';
+                }
+                if (map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] == ' ') {
                     map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] = enemy;
                 }
-                x = _x;
-                y = _y;
+            } else {
+                map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] = ' ';
+                map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] = enemy;
             }
+            x = _x;
+            y = _y;
         }
         return ans;
     }
@@ -118,11 +116,8 @@ public abstract class Enemy extends Entity {
 
     @Override
     public void update() {
-        if (die) {
-            afterDie();
-        } else {
-            moveEnemy();
-        }
+        if (die) afterDie();
+        else moveEnemy();
         set_animate(2000);
         if (!isRemove) img = sprite.getFxImage();
         else img = null;

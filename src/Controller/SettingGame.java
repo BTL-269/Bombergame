@@ -28,59 +28,59 @@ public class SettingGame {
     @FXML
     void clickMap1(MouseEvent event) {
         typeMap = 1;
-        recMap.setLayoutX(125);
+        recMap.setLayoutX(127);
     }
 
     @FXML
     void clickMap2(MouseEvent event) {
         typeMap = 2;
-        recMap.setLayoutX(322);
+        recMap.setLayoutX(324);
     }
 
     @FXML
     void clickMap3(MouseEvent event) {
         typeMap = 3;
-        recMap.setLayoutX(518);
+        recMap.setLayoutX(520);
     }
 
     @FXML
     void clickMap4(MouseEvent event) {
         typeMap = 4;
-        recMap.setLayoutX(710);
+        recMap.setLayoutX(712);
     }
 
     @FXML
     void clickOran(MouseEvent event) {
         player = 1;
-        recPlayer.setLayoutX(140);
+        recPlayer.setLayoutX(139);
         bomberman = new Bomber(1, 1, Sprite.child_right.getFxImage());
     }
 
     @FXML
     void clickMaria(MouseEvent event) {
         player = 2;
-        recPlayer.setLayoutX(298);
+        recPlayer.setLayoutX(297);
         bomberman = new Bomber(1, 1, Sprite.girl_right.getFxImage());
     }
 
     @FXML
     void clickTomy(MouseEvent event) {
         player = 3;
-        recPlayer.setLayoutX(452);
+        recPlayer.setLayoutX(451);
         bomberman = new Bomber(1, 1, Sprite.boy_right.getFxImage());
     }
 
     @FXML
     void clickNick(MouseEvent event) {
         player = 4;
-        recPlayer.setLayoutX(606);
+        recPlayer.setLayoutX(605);
         bomberman = new Bomber(1, 1, Sprite.gamer_right.getFxImage());
     }
 
     @FXML
     void clickWinny(MouseEvent event) {
         player = 5;
-        recPlayer.setLayoutX(753);
+        recPlayer.setLayoutX(752);
         bomberman = new Bomber(1, 1, Sprite.play_right.getFxImage());
     }
 

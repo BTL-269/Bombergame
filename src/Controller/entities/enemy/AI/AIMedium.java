@@ -44,6 +44,7 @@ class Node {
 }
 
 public class AIMedium extends Enemy {
+    // '4' : xuyen brick, '2' : khong xuyen brick
 
     private final Bomber b = SettingGame.bomberman;
     private Node[][] matrixNode = new Node[MainGame.HEIGHT][MainGame.WIDTH]; // ma tran cac Node
@@ -63,14 +64,15 @@ public class AIMedium extends Enemy {
             }
         } else {
             move();
-            direction = findDirection();
         }
     }
 
     public int findDirection() {
         createMatrixNode();
-        if (direction == 1 || direction == 3) {
-            A_star(matrixNode[(y + 31)/ Sprite.DEFAULT_SIZE][(x + 31) / Sprite.DEFAULT_SIZE], matrixNode[b.getYUnit()][b.getXUnit()]);
+        if (direction == 1) {
+            A_star(matrixNode[y / Sprite.DEFAULT_SIZE][(x + 31) / Sprite.DEFAULT_SIZE], matrixNode[b.getYUnit()][b.getXUnit()]);
+        } else if (direction == 3) {
+            A_star(matrixNode[(y + 31) / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE], matrixNode[b.getYUnit()][b.getXUnit()]);
         } else {
             A_star(matrixNode[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE], matrixNode[b.getYUnit()][b.getXUnit()]);
         }
