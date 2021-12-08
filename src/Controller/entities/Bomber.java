@@ -16,7 +16,7 @@ public class Bomber extends Entity {
     private long timeDie;
     private int step = 4;
 
-    private boolean alive = true;
+    public static boolean alive = true;
     private boolean bombItem = false; // kiểm tra bomb item được ăn chưa
     public static boolean win = false; // kiểm tra đã thắng chưa, nếu thắng tăng level.
     public static boolean lose = false; // kiểm tra player đã thua chưa.
@@ -66,7 +66,7 @@ public class Bomber extends Entity {
             type = RIGHT;
         }
         if (event.getCode() == KeyCode.SHIFT) {
-            if (System.currentTimeMillis() - bomb1.timeStart >= 4000) {
+            if (System.currentTimeMillis() - bomb1.timeStart > 4000) {
                 bomb1.setXY((x + 12) / Sprite.DEFAULT_SIZE, (y + 15) / Sprite.DEFAULT_SIZE); // + kí hiệu khi player đặt bomb
                 bomb1.timeStart = System.currentTimeMillis();
                 bomb1.check = true;
@@ -90,7 +90,7 @@ public class Bomber extends Entity {
                     bombItem = true;
                     break;
                 case 'S': // speed item
-                    step += 4;
+                    step += 2;
                     break;
                 case 'F': // flame item
                     bomb1.setPowerUp(true);
@@ -197,7 +197,6 @@ public class Bomber extends Entity {
         y = yUnit * Sprite.DEFAULT_SIZE;
         sprite = Sprite.player_right;
         map[bomb1.yUnit][bomb1.xUnit] = ' ';
-        //bomb1.check = false;
     }
 
     public void isWin() {

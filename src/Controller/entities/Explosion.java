@@ -16,7 +16,7 @@ public class Explosion extends Entity {
 
     private boolean powerUp = false;
 
-    int t = 60;
+    private int t = 60;
 
     public Explosion(int x, int y, Image img, int type) {
         super(x, y, img);

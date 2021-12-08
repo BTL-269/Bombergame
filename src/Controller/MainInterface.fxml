@@ -41,7 +41,7 @@
             </Pane>
          </children>
       </Pane>
-      <Pane layoutX="800.0" layoutY="100.0" prefHeight="680.0" prefWidth="200.0" style="-fx-background-color: #7cbcf5;" styleClass="border" stylesheets="@style.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="800.0" prefHeight="680.0" prefWidth="200.0" style="-fx-background-color: #7cbcf5;" styleClass="border" stylesheets="@style.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="14.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -83,16 +83,21 @@
                   <Font name="Cambria Bold" size="20.0" />
                </font>
             </TextField>
-            <Label fx:id="levelLabel" layoutX="18.0" layoutY="28.0" prefHeight="40.0" prefWidth="165.0" textFill="#e40000">
+            <Label fx:id="levelLabel" alignment="CENTER" layoutX="18.0" layoutY="28.0" prefHeight="40.0" prefWidth="165.0" textAlignment="CENTER" textFill="#e40000">
                <font>
                   <Font name="Cambria Bold" size="22.0" />
                </font>
             </Label>
-            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="51.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="51.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/bomb.png" />
                </image>
             </ImageView>
+            <Label layoutX="55.0" layoutY="561.0" text="SHIFT">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

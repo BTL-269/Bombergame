@@ -82,8 +82,4 @@ public class Bomb extends Entity {
             e.setPowerUp(false);
         }
     }
-
-    public boolean isCheck() {
-        return check;
-    }
 }

@@ -2,6 +2,7 @@ package Controller;
 
 import Controller.entities.Bomber;
 import Controller.entities.Entity;
+import Controller.entities.Explosion;
 import Controller.graphics.Board;
 import Controller.graphics.Sprite;
 import javafx.animation.AnimationTimer;
@@ -82,7 +83,7 @@ public class MainGame implements Initializable {
     }
 
     public void setDetail() {
-        levelLabel.setText("  Level  " + String.valueOf(level));
+        levelLabel.setText("Level  " + String.valueOf(level));
         heart.setText(String.valueOf(soul));
         time.setText(String.valueOf(300 - (System.currentTimeMillis() - playTime) / 1000));
         score.setText(String.valueOf(playScore));
@@ -122,12 +123,24 @@ public class MainGame implements Initializable {
         if (Bomber.lose) {
             playScore = 0;
             level = 1;
-            soul = 4;
+            if (Bomber.alive) {
+                soul = 3;
+            } else {
+                soul = 4;
+            }
         } else if (Bomber.win) {
             level++;
         }
         Bomber.lose = false;
         Bomber.win = false;
+        bomberman.bomb1.check = false;
+        bomberman.bomb2.check = false;
+        for (Explosion e : bomberman.bomb1.explosions) {
+            e.timeStart = 0;
+        }
+        for (Explosion e : bomberman.bomb2.explosions) {
+            e.timeStart = 0;
+        }
     }
 
     @FXML
