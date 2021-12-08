@@ -33,7 +33,7 @@ public class Explosion extends Entity {
 
     @Override
     public void update() {
-        if (isExplosion() && check == true) {
+        if (isExplosion() && check) {
             if (System.currentTimeMillis() - timeStart < 1000) {
                 set_animate(1000);
                 chooseSprite();
