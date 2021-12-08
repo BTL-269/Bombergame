@@ -8,7 +8,7 @@ public class Oneal extends AIMedium {
 
     public Oneal(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img, '2');
-        mark = 175;
+        mark = 200;
     }
 
 }

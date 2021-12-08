@@ -1,6 +1,8 @@
 package Controller.graphics;
 
+
 import Controller.MainGame;
+import Controller.SettingGame;
 import Controller.entities.*;
 import Controller.entities.enemy.*;
 
@@ -49,6 +51,9 @@ public class Board {
                     case '#':
                         object = new Wall(j, i, Sprite.wall.getFxImage());
                         break;
+                    case 'x':
+                        entities.add(new Portal(j, i, Sprite.brick.getFxImage()));
+                        break;
                     case '1':
                         entities.add(new Balloon(j, i, Sprite.balloom_left1.getFxImage()));
                         break;
@@ -67,9 +72,6 @@ public class Board {
                     case '*':
                         entities.add(new Brick(j, i, Sprite.brick.getFxImage()));
                         break;
-                    case 'x':
-                        entities.add(new Portal(j, i, Sprite.brick.getFxImage()));
-                        break;
                     case 'b':
                     case 'd':
                     case 'f':
@@ -86,64 +88,4 @@ public class Board {
             }
         }
     }
-        /*try {
-            entities.clear();
-            stillObjects.clear();
-            Sprite.setPlayer();
-            Sprite.setMap();
-            //FileReader fr = new FileReader(fileName);
-            //BufferedReader br = new BufferedReader(fr);
-            for (int i = 0; i < MainGame.HEIGHT; i++) {
-                //String s = br.readLine();
-                for (int j = 0; j < s.length(); j++) {
-                    Entity object = null;
-                    Entity grass = new Grass(j, i, Sprite.grass.getFxImage());
-                    stillObjects.add(grass);
-                    //map[i][j] = s.charAt(j);
-                    switch (s.charAt(j)) {
-                        case '#':
-                            object = new Wall(j, i, Sprite.wall.getFxImage());
-                            break;
-                        case '*':
-                            entities.add(new Brick(j, i, Sprite.brick.getFxImage()));
-                            break;
-                        case 'x':
-                            entities.add(new Portal(j, i, Sprite.brick.getFxImage()));
-                            break;
-                        case '1':
-                            entities.add(new Balloon(j, i, Sprite.balloom_left1.getFxImage()));
-                            break;
-                        case '2':
-                            entities.add(new Oneal(j, i, Sprite.oneal_left1.getFxImage()));
-                            break;
-                        case '3':
-                            entities.add(new Doll(j, i, Sprite.doll_left1.getFxImage()));
-                            break;
-                        case '4':
-                            entities.add(new Minvo(j, i, Sprite.minvo_left1.getFxImage()));
-                            break;
-                        case '5':
-                            entities.add(new Kondoria(j, i, Sprite.kondoria_left1.getFxImage()));
-                            break;
-                        case 'b':
-                        case 'd':
-                        case 'f':
-                        case 's':
-                        case 'w':
-                            entities.add(new Items(j, i, Sprite.brick.getFxImage()));
-                            break;
-                        default:
-                            break;
-                    }
-                    if (object != null) {
-                        stillObjects.add(object);
-                    }
-                }
-            }
-            //br.close();
-            //fr.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 }

@@ -44,7 +44,6 @@ class Node {
 }
 
 public class AIMedium extends Enemy {
-    // '4' : xuyen brick, '2' : khong xuyen brick
 
     private final Bomber b = SettingGame.bomberman;
     private Node[][] matrixNode = new Node[MainGame.HEIGHT][MainGame.WIDTH]; // ma tran cac Node
@@ -59,34 +58,25 @@ public class AIMedium extends Enemy {
     @Override
     public void moveEnemy() {
         if (findDirection() == -1) {
-            System.out.println("k co duong: " + direction);
-            boolean ans = move();
-            if (!ans) {
+            if (!move()) {
                 direction = rd.nextInt(4);
             }
         } else {
-            System.out.println("co duong: " + direction);
             move();
             direction = findDirection();
-        }
-        if (enemy == '4') {
-            System.out.println("(" + y / 32 + "," + x / 32 + ")" + "   " + "(" + y + "," + x + ")");
         }
     }
 
     public int findDirection() {
         createMatrixNode();
-        if (direction == 1) {
-            A_star(matrixNode[y / Sprite.DEFAULT_SIZE][(x + 31) / Sprite.DEFAULT_SIZE], matrixNode[b.getYUnit()][b.getXUnit()]);
-        } else if (direction == 3) {
-            A_star(matrixNode[(y + 31) / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE], matrixNode[b.getYUnit()][b.getXUnit()]);
+        if (direction == 1 || direction == 3) {
+            A_star(matrixNode[(y + 31)/ Sprite.DEFAULT_SIZE][(x + 31) / Sprite.DEFAULT_SIZE], matrixNode[b.getYUnit()][b.getXUnit()]);
         } else {
             A_star(matrixNode[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE], matrixNode[b.getYUnit()][b.getXUnit()]);
         }
         if (!hasPath) return -1;
         int i = path.size() - 1;
         if (i <= 1) return -1;
-        System.out.println(path);
         if ((b.bomb1.check && path.contains(matrixNode[b.bomb1.getYUnit()][b.bomb1.getXUnit()]))
                 || (b.bomb2.check && path.contains(matrixNode[b.bomb2.getYUnit()][b.bomb2.getXUnit()]))) {
             return -1;

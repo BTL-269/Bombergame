@@ -23,10 +23,6 @@ public class Explosion extends Entity {
         this.type = type;
     }
 
-    public boolean isPowerUp() {
-        return powerUp;
-    }
-
     public void setPowerUp(boolean powerUp) {
         this.powerUp = powerUp;
     }
@@ -40,12 +36,13 @@ public class Explosion extends Entity {
                 img = sprite.getFxImage();
                 map[yUnit][xUnit] = '-';
             } else {
-                if (map[yUnit][xUnit] != 'D' && map[yUnit][xUnit] != 'B' && map[yUnit][xUnit] != 'S'
-                        && map[yUnit][xUnit] != 'F' && map[yUnit][xUnit] != 'X') {
+                if (map[yUnit][xUnit] != 'D' || map[yUnit][xUnit] != 'B' || map[yUnit][xUnit] != 'S'
+                        || map[yUnit][xUnit] != 'F' || map[yUnit][xUnit] != 'X') {
                     map[yUnit][xUnit] = ' ';
                 }
                 check = false;
                 img = null;
+                _animate = 0;
             }
         }
     }

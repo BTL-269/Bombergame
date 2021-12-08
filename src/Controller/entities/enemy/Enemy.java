@@ -1,5 +1,6 @@
 package Controller.entities.enemy;
 
+import Controller.BombermanGame;
 import Controller.MainGame;
 import Controller.entities.Entity;
 import Controller.entities.Text;
@@ -22,6 +23,7 @@ public abstract class Enemy extends Entity {
 
     public Enemy(int xUnit, int yUnit, Image img, char e) {
         super(xUnit, yUnit, img);
+        MainGame.numberEnemies++;
         sprites = Sprite.setEnemy(e);
         sprite = sprites[0];
         enemy = e;
@@ -34,28 +36,29 @@ public abstract class Enemy extends Entity {
         int _x = x;
         int _y = y;
 
-        if (direction == 0) _x += SPEED;  // right
-        if (direction == 1) _x -= SPEED;  // left
-        if (direction == 2) _y += SPEED;  // down
-        if (direction == 3) _y -= SPEED;  // up
-        chooseSprite(direction);
+        if (!die) {
+            if (direction == 0) _x += SPEED;  // right
+            if (direction == 1) _x -= SPEED;  // left
+            if (direction == 2) _y += SPEED;  // down
+            if (direction == 3) _y -= SPEED;  // up
+            chooseSprite(direction);
 
-        if (canMove(_x, _y)) {
-            ans = true;
-            if (enemy == '5') {
-                if (map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] == '5'
-                        && map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] != '-') {
+            if (canMove(_x, _y)) {
+                ans = true;
+                if (enemy == '4' || enemy == '5') {
+                    if (map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] == enemy) {
+                        map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] = ' ';
+                    }
+                    if (map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] == ' ') {
+                        map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] = enemy;
+                    }
+                } else {
                     map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] = ' ';
+                    map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] = enemy;
                 }
-                if (map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] == ' ') {
-                    map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] = '5';
-                }
-            } else {
-                map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] = ' ';
-                map[_y / Sprite.DEFAULT_SIZE][_x / Sprite.DEFAULT_SIZE] = enemy;
+                x = _x;
+                y = _y;
             }
-            x = _x;
-            y = _y;
         }
         return ans;
     }
@@ -68,6 +71,11 @@ public abstract class Enemy extends Entity {
 
         if (c == '-') {
             die = true;
+            MainGame.numberEnemies--;
+            MainGame.playScore += mark;
+            if (BombermanGame.playAudio % 2 == 0) {
+                BombermanGame.soundMonsterDead.play();
+            }
             return false;
         }
 
@@ -98,8 +106,7 @@ public abstract class Enemy extends Entity {
     }
 
     public void afterDie() {
-        MainGame.numberEnemies--;
-        sprite = Sprite.movingSprite(sprites[6], Sprite.grass, _animate, 30);
+        sprite = Sprite.movingSprite(sprites[6], Sprite.spriteNull, _animate, 30);
         if (finalAnimation > 0) --finalAnimation;
         else isRemove = true;
         map[y / Sprite.DEFAULT_SIZE][x / Sprite.DEFAULT_SIZE] = ' ';
@@ -111,11 +118,14 @@ public abstract class Enemy extends Entity {
 
     @Override
     public void update() {
+        if (die) {
+            afterDie();
+        } else {
+            moveEnemy();
+        }
         set_animate(2000);
         if (!isRemove) img = sprite.getFxImage();
         else img = null;
-        if (die) afterDie();
-        else moveEnemy();
     }
 }
 

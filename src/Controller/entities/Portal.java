@@ -3,9 +3,7 @@ package Controller.entities;
 import Controller.graphics.Sprite;
 import javafx.scene.image.Image;
 
-public class Portal extends Entity {
-    private long sTime;
-    private boolean show = false;
+public class Portal extends Tiles {
 
     public Portal(int xUnit, int yUnit, Image img) {
         super(xUnit, yUnit, img);
@@ -19,48 +17,13 @@ public class Portal extends Entity {
                 broken();
                 img = sprite.getFxImage();
             } else {
-                map[yUnit][xUnit] = 'X';
-                sprite = Sprite.portal;
                 show = true;
-                img = sprite.getFxImage();
             }
         }
-
-    }
-
-    public boolean isCollide() {
-        for (int i = 0; i < 5; i++) {
-            if ((xUnit == Bomber.bomb1.explosions.get(i).xUnit && yUnit == Bomber.bomb1.explosions.get(i).yUnit)
-                    && Bomber.bomb1.explosions.get(i).check == true) {
-                sTime = Bomber.bomb1.explosions.get(i).timeStart;
-                return true;
-            }
+        if (show) {
+            map[yUnit][xUnit] = 'X';
+            sprite = Sprite.portal;
+            img = sprite.getFxImage();
         }
-        for (int i = 5; i < 9; i++) {
-            if (xUnit == Bomber.bomb1.explosions.get(i).xUnit && yUnit == Bomber.bomb1.explosions.get(i).yUnit
-                    && Bomber.bomb1.explosions.get(i).isExplosion() && Bomber.bomb1.explosions.get(i).check == true) {
-                sTime = Bomber.bomb1.explosions.get(i).timeStart;
-                return true;
-            }
-        }
-        for (int i = 0; i < 5; i++) {
-            if (xUnit == Bomber.bomb2.explosions.get(i).xUnit && yUnit == Bomber.bomb2.explosions.get(i).yUnit
-                    && Bomber.bomb2.explosions.get(i).check == true) {
-                sTime = Bomber.bomb2.explosions.get(i).timeStart;
-                return true;
-            }
-        }
-        for (int i = 5; i < 9; i++) {
-            if (xUnit == Bomber.bomb2.explosions.get(i).xUnit && yUnit == Bomber.bomb2.explosions.get(i).yUnit
-                    && Bomber.bomb2.explosions.get(i).isExplosion() && Bomber.bomb2.explosions.get(i).check == true) {
-                sTime = Bomber.bomb2.explosions.get(i).timeStart;
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void broken() {
-        sprite = Sprite.movingSprite(Sprite.brick_break, Sprite.brick_break1, Sprite.brick_break2, _animate, 80);
     }
 }
